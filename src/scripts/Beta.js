@@ -1,9 +1,11 @@
+import { Navbar } from "./navBar/NavBar.js";
+
 export const Beta = () => {
     // Show user's main page for post stuff
     return `
         <article class="mainPage">
             <section class="navbar">
-            NavBar Go Here
+            ${Navbar()}
             </section>
             <section class="postList">
             PostList Go Here

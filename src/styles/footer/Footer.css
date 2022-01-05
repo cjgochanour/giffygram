@@ -1,0 +1,17 @@
+.footer {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bolder;
+    background-image: linear-gradient(
+      to left,
+      violet,
+      indigo,
+      blue,
+      red,
+      orange,
+      green
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  

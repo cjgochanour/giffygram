@@ -1,4 +1,5 @@
 import { Navbar } from "./navBar/NavBar.js";
+import { PostList } from "./postsFeed/PostList.js";
 
 export const Beta = () => {
     // Show user's main page for post stuff
@@ -8,7 +9,7 @@ export const Beta = () => {
             ${Navbar()}
             </section>
             <section class="postList">
-            PostList Go Here
+            ${PostList()}
             </section>
             <section class="messSideBar">
             MessageSideBar Go Here

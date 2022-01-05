@@ -2,10 +2,14 @@ export const Register = () => {
     return `
         <div class="registerForm">
             <form>
-                <fieldset>
-                    <label form="name">Full Name:</label>
-                    <input type="text" name="name" autofocus placeholder="Full Name" />>
-                </fieldset>
+            <fieldset>
+                <label form="firstName">First Name:</label>
+                <input type="text" name="firstName" autofocus placeholder="First Name" />>
+            </fieldset>
+            <fieldset>
+                <label form="lastName">Last Name:</label>
+                <input type="text" name="lastName" placeholder="Last Name" />>
+            </fieldset>
                 <fieldset>
                     <label for="email">Email:</label>
                     <input type="text" name="email" placeholder="Email address" />

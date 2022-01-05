@@ -1,13 +1,33 @@
+import {
+	fetchLikes,
+	fetchMessages,
+	fetchPosts,
+	fetchUsers
+} from "./dataAccess.js";
 import { Beta } from "./Beta.js";
+import { LoginForm } from "./auth/Login.js";
 
-const applicationElement = document.querySelector(".beta");
+const mainContainer = document.querySelector(".beta");
 
 export const renderApp = () => {
-    const user = parseInt(localStorage.getItem("beta_user"));
+	Promise.all([
+		fetchUsers(),
+		fetchPosts(),
+		fetchLikes(),
+		fetchMessages()
+	]).then(() => {
+		const user = parseInt(localStorage.getItem("beta_user"));
 
-    if (user) {
-        applicationElement.innerHTML = Beta();
-    } else {
-        applicationElement.innerHTML = LoginForm();
-    }
+		if (user) {
+			mainContainer.innerHTML = Beta();
+		} else {
+			mainContainer.innerHTML = LoginForm();
+		}
+	});
 };
+
+mainContainer.addEventListener("stateChanged", (event) => {
+	renderApp();
+});
+
+renderApp();

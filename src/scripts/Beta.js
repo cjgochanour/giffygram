@@ -1,4 +1,19 @@
 export const Beta = () => {
-    // Show main main UI
-    return `<h1>Beta</h1>`;
+    // Show user's main page for post stuff
+    return `
+        <article class="mainPage">
+            <section class="navbar">
+            NavBar Go Here
+            </section>
+            <section class="postList">
+            PostList Go Here
+            </section>
+            <section class="messSideBar">
+            MessageSideBar Go Here
+            </section>
+        </article>
+        <footer class="footer">
+        Footer Go Here
+        </footer>
+    `;
 };

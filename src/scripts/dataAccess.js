@@ -1,4 +1,4 @@
-const apiURL = "http://localhost:8088";
+const API = "http://localhost:8088";
 const mainContainer = document.querySelector(".beta");
 
 const applicationState = {
@@ -133,12 +133,12 @@ export const setDisplayMessageCreateTrue = () => {
     applicationState.feed.displayMessageCreate = true;
 };
 
-export const setDisplayMessageCreateFalse = () => {
-    applicationState.feed.displayMessageCreate = false;
+export const setDisplayPostCreateFalse = () => {
+    applicationState.feed.displayPostCreate = false;
 };
 
-export const setDisplayMessageCreateTrue = () => {
-    applicationState.feed.displayMessageCreate = true;
+export const setDisplayPostCreateTrue = () => {
+    applicationState.feed.displayPostCreate = true;
 };
 
 //POST functions to add to the database

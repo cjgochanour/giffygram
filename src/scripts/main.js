@@ -5,7 +5,7 @@ import {
 	fetchUsers
 } from "./dataAccess.js";
 import { Beta } from "./Beta.js";
-import { LoginForm } from "./auth/Login.js";
+import { Auth } from "./auth/Auth.js"
 
 const mainContainer = document.querySelector(".beta");
 
@@ -21,7 +21,7 @@ export const renderApp = () => {
 		if (user) {
 			mainContainer.innerHTML = Beta();
 		} else {
-			mainContainer.innerHTML = LoginForm();
+			mainContainer.innerHTML = Auth();
 		}
 	});
 };

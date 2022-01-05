@@ -1,4 +1,5 @@
-import { getUsers } from "../data/provider.js";
+import { getUsers } from "../dataAccess.js";
+import { setAuthStateLogin, setAuthStateReg } from "./Auth.js";
 
 document.addEventListener("click", (clickEvent) => {
     if (clickEvent.target.id === "loginButton") {
@@ -18,6 +19,14 @@ document.addEventListener("click", (clickEvent) => {
             localStorage.setItem("beta_user", foundUser.id);
             document.querySelector(".beta").dispatchEvent(new CustomEvent("stateChanged"));
         }
+    }
+});
+
+//When register button is clicked, change authState to register and send out stateChanged event so main will rerender the whole app with register being returned for Auth()
+document.addEventListener("click", (clickEvent) => {
+    if (clickEvent.target.id === "registerButton") {
+        setAuthStateReg();
+        document.querySelector(".beta").dispatchEvent(new CustomEvent("stateChanged"));
     }
 });
 

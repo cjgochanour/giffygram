@@ -4,11 +4,11 @@ export const Register = () => {
             <form>
             <fieldset>
                 <label form="firstName">First Name:</label>
-                <input type="text" name="firstName" autofocus placeholder="First Name" />>
+                <input type="text" name="firstName" autofocus placeholder="First Name" />
             </fieldset>
             <fieldset>
                 <label form="lastName">Last Name:</label>
-                <input type="text" name="lastName" placeholder="Last Name" />>
+                <input type="text" name="lastName" placeholder="Last Name" />
             </fieldset>
                 <fieldset>
                     <label for="email">Email:</label>

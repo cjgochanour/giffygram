@@ -52,15 +52,15 @@ export const getUsers = () => {
 };
 
 export const getPosts = () => {
-    return applicationState.currentState.users.map((post) => ({ ...post }));
+    return applicationState.currentState.posts.map((post) => ({ ...post }));
 };
 
 export const getLikes = () => {
-    return applicationState.currentState.users.map((like) => ({ ...like }));
+    return applicationState.currentState.likes.map((like) => ({ ...like }));
 };
 
 export const getMessages = () => {
-    return applicationState.currentState.users.map((message) => ({ ...message }));
+    return applicationState.currentState.messages.map((message) => ({ ...message }));
 };
 
 export const getCurrentUser = () => {

@@ -1,13 +1,13 @@
-import { GiffyGram } from "./GiffyGram.js"
+import { Beta } from "./Beta.js";
 
-const applicationElement = document.querySelector(".giffygram")
+const applicationElement = document.querySelector(".giffygram");
 
 export const renderApp = () => {
-    const user = parseInt(localStorage.getItem("gg_user"))
+    const user = parseInt(localStorage.getItem("gg_user"));
 
     if (user) {
-        applicationElement.innerHTML = GiffyGram()
+        applicationElement.innerHTML = Beta();
     } else {
-        applicationElement.innerHTML = LoginForm()
+        applicationElement.innerHTML = LoginForm();
     }
-}
+};

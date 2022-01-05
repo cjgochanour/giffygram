@@ -7,7 +7,7 @@ export const messageForm = () => {
     <div class="messageForm">
         <form>
             <fieldset>
-                <select class="messageFormItem recipientList">
+                <select id="msgRecList" class="messageFormItem recipientList">
                     <option value = "0">Choose Recipient</option>
                         ${users.map((user) => {
                             return `

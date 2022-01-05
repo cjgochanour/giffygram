@@ -35,6 +35,7 @@ export const LoginForm = () => {
                 </fieldset>
             </form>
             <button id="loginButton">Login</button>
+            <button id="registerButton">Register</button>
         </div>
     `;
 };

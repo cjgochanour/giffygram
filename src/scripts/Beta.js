@@ -1,7 +1,7 @@
 import { Navbar } from "./navBar/NavBar.js";
 import { PostList } from "./postsFeed/PostList.js";
-
 import { MessageSideBar } from "./messages/MessageSideBar.js";
+import { Footer } from "./footer/Footer.js";
 
 export const Beta = () => {
     // Show user's main page for post stuff
@@ -18,7 +18,7 @@ export const Beta = () => {
             </section>
         </article>
         <footer class="footer">
-        Footer Go Here
+            ${Footer()}
         </footer>
     `;
 };

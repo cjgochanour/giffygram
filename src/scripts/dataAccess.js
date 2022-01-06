@@ -28,7 +28,7 @@ export const fetchUsers = () => {
 };
 
 export const fetchPosts = () => {
-    return fetch(`${API}/posts?_sort=id&_order=desc`)
+    return fetch(`${API}/posts?_sort=timestamp&_order=desc`)
         .then((res) => res.json())
         .then((posts) => (applicationState.currentState.posts = posts));
 };
@@ -40,7 +40,7 @@ export const fetchLikes = () => {
 };
 
 export const fetchMessages = () => {
-    return fetch(`${API}/messages`)
+    return fetch(`${API}/messages?_sort=timestamp&_order=desc`)
         .then((res) => res.json())
         .then((messages) => (applicationState.currentState.messages = messages));
 };

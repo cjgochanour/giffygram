@@ -1,5 +1,5 @@
-import { getCurrentUser, getMessages, getUsers, setChosenUser } from "../dataAccess.js";
-import { msgClose, msgOpen, getMsgCol, setMsgColFalse, setMsgColTrue } from "../messages/MessageSideBar.js";
+import { getCurrentUser, getUsers, setChosenUser } from "../dataAccess.js";
+import { Notification } from "./Notification.js";
 
 export const Navbar = () => {
     const currentUser = getCurrentUser();
@@ -13,7 +13,7 @@ export const Navbar = () => {
             <div id="userBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />${
                 currentUser.firstName
             } ${currentUser.lastName}</div>
-            <div id="notification" class="navcolItem notification notificationBtn">${notification()}</div>
+            <div id="notification" class="navcolItem notification notificationBtn">${Notification()}</div>
             <div id="writeMessageBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Compose Message</div>
             <div id="postGifBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Post Gif</div>
             <div id="filterLikeBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Filter By Likes</div>
@@ -30,21 +30,7 @@ export const Navbar = () => {
     `;
 };
 
-//function for rendering notification button
-const notification = () => {
-    const currentUser = getCurrentUser();
-    const allMessages = getMessages();
-    const userMessages = allMessages.filter((msg) => msg.recipientId === currentUser.id);
-    const userMessagesUnread = userMessages.filter((msg) => !msg.read);
 
-    return `<img id="notifImg" class="notificationBtn notifImg" src="${
-        userMessagesUnread.length > 0 ? "images/notification-bell-filled.png" : "images/notification-bell-empty.png"
-    }" alt="AltText" width="30px" />${
-        userMessagesUnread.length > 0
-            ? `<div class="notificationBtn notifNumberContainer"><span class="notifNumber">${userMessagesUnread.length}</span></div>`
-            : ""
-    }`;
-};
 
 //grab items from dom
 const mainContainer = document.querySelector(".beta");
@@ -75,18 +61,6 @@ mainContainer.addEventListener("click", (clickEvent) => {
     }
 });
 
-//open messages window button event listener
-mainContainer.addEventListener("click", (clickEvent) => {
-    if (clickEvent.target.classList.contains("notificationBtn")) {
-        if (getMsgCol()) {
-            msgOpen();
-            setMsgColFalse();
-        } else {
-            msgClose();
-            setMsgColTrue();
-        }
-    }
-});
 //sends user to login page when logout button is clicked
 mainContainer.addEventListener("click", (clickEvent) => {
     if (clickEvent.target.id === "logoutBtn" || clickEvent.target.id === "logoutImg") {
@@ -100,9 +74,4 @@ mainContainer.addEventListener("change", (event) => {
         setChosenUser(parseInt(event.target.value));
         mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
     }
-});
-
-//event listener for notification button updating itself
-mainContainer.addEventListener("notificationUpdate", (event) => {
-    document.querySelector(".notification").innerHTML = notification();
 });

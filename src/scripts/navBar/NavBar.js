@@ -1,5 +1,6 @@
 import { getCurrentUser, getLikes, getUsers } from "../dataAccess.js"
 import { msgClose, msgOpen, getMsgCol, setMsgColFalse, setMsgColTrue } from "../messages/MessageSideBar.js";
+import {LoginForm} from "../auth/Login.js"
 
 export const Navbar = () => {
     const currentUser = getCurrentUser();
@@ -19,7 +20,7 @@ export const Navbar = () => {
                         return `<option value="${user.id}">${user.firstName} ${user.lastName}</option>`
                     }).join("")}
             </select>
-            <span id="logoutBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Log Out</span>
+            <span id="logoutBtn" class="navcolItem"><img id="logoutImg" src="images/betaLogo.png" alt="AltText" width="50px" />Log Out</span>
         </section>
     `
 }
@@ -64,5 +65,12 @@ mainContainer.addEventListener("click", clickEvent => {
             msgClose();
             setMsgColTrue();
         }
+    }
+})
+//sends user to login page when logout button is clicked
+mainContainer.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "logoutBtn" || clickEvent.target.id === "logoutImg") {
+        localStorage.removeItem("beta_user")
+        mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
     }
 })

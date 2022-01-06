@@ -23,6 +23,7 @@ h3,
 h4,
 h5,
 h6 {
+    font-size: 2rem;
     font-family: "Patua One", serif;
     letter-spacing: 2px;
 }

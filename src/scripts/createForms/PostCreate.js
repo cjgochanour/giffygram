@@ -1,4 +1,5 @@
-import { getCurrentUser, sendPost, setDisplayPostCreateFalse } from "../dataAccess.js";
+import { fetchPosts, getCurrentUser, sendPost, setDisplayPostCreateFalse } from "../dataAccess.js";
+import { PostList } from "../postsFeed/PostList.js";
 
 const mainContainer = document.querySelector(".beta");
 
@@ -18,13 +19,23 @@ mainContainer.addEventListener("click", (event) => {
         const timestamp = Date.now();
         const authorId = author.id;
 
-        const post = { subject, gifLink, story, timestamp, authorId };
+        if (subject && gifLink.startsWith("http") && story) {
+            const post = { subject, gifLink, story, timestamp, authorId };
 
-        sendPost(post).then(() => {
-            mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
-            setDisplayPostCreateFalse();
-            document.querySelector(".postCreate").style.visibility = "hidden";
-        });
+            sendPost(post)
+                .then(() => fetchPosts())
+                .then(() => {
+                    // mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+                    setDisplayPostCreateFalse();
+                    mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
+                    document.querySelector(".postCreate").style.visibility = "hidden";
+                    document.querySelector("input[name='postTitle']").value = "";
+                    document.querySelector("input[name='gifURL']").value = "";
+                    document.querySelector("textarea[name='postComment']").value = "";
+                });
+        } else {
+            window.alert("Please Enter A GIF URL, Title, and Comment");
+        }
     }
 });
 
@@ -34,8 +45,7 @@ export const PostCreate = () => {
             <form>
                 <input type="text" name="gifURL" id="postUrlInput" placeholder="URL:" />
                 <input type="text" name="postTitle" id="postTitle" placeholder="Title:" />
-                <textarea name="postComment" id="postComment" placeholder="Comment:">
-                </textarea>
+                <textarea name="postComment" id="postComment" placeholder="Comment:"></textarea>
             </form>
             <button id="sendPost">Submit Post</button>
 `;

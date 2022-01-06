@@ -11,6 +11,10 @@ mainContainer.addEventListener("click", (event) => {
     }
 });
 
+mainContainer.addEventListener("postListChanged", () => {
+    document.querySelector(".postList").innerHTML = PostList();
+});
+
 export const PostList = () => {
     let posts = getPosts();
     const chosenUser = getChosenUser();

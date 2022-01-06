@@ -1,4 +1,4 @@
-import { getCurrentUser, getMessages, getUsers, setChosenUser } from "../dataAccess.js"
+import { getCurrentUser, getMessages, getUsers, setChosenUser } from "../dataAccess.js";
 import { msgClose, msgOpen, getMsgCol, setMsgColFalse, setMsgColTrue } from "../messages/MessageSideBar.js";
 
 export const Navbar = () => {
@@ -10,13 +10,15 @@ export const Navbar = () => {
         <img class="navbarItem navColBtn" id="navColBtn" src="images/betaLogo.png" alt="AltText" width="50px" />
         <section class="navbarCollapse navbarItem">
             <div id="homeBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Home</div>
-            <div id="userBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />${currentUser.firstName} ${currentUser.lastName}</div>
+            <div id="userBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />${
+                currentUser.firstName
+            } ${currentUser.lastName}</div>
             <div id="notification" class="navcolItem notification notificationBtn">${notification()}</div>
             <div id="writeMessageBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Compose Message</div>
             <div id="postGifBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Post Gif</div>
             <div id="filterLikeBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Filter By Likes</div>
             <select id="filterDropDown" class="navcolItem">
-                    <option value="0">Filter by name</option>
+                    <option value="0">Show All Posts</option>
                     ${users
                         .map((user) => {
                             return `<option value="${user.id}">${user.firstName} ${user.lastName}</option>`;
@@ -32,11 +34,17 @@ export const Navbar = () => {
 const notification = () => {
     const currentUser = getCurrentUser();
     const allMessages = getMessages();
-    const userMessages = allMessages.filter(msg => msg.recipientId === currentUser.id);
-    const userMessagesUnread = userMessages.filter(msg => !msg.read);
+    const userMessages = allMessages.filter((msg) => msg.recipientId === currentUser.id);
+    const userMessagesUnread = userMessages.filter((msg) => !msg.read);
 
-    return `<img id="notifImg" class="notificationBtn notifImg" src="${(userMessagesUnread.length > 0) ? "images/notification-bell-filled.png" : "images/notification-bell-empty.png"}" alt="AltText" width="30px" />${(userMessagesUnread.length > 0) ? `<div class="notificationBtn notifNumberContainer"><span class="notifNumber">${userMessagesUnread.length}</span></div>` : ""}`
-}
+    return `<img id="notifImg" class="notificationBtn notifImg" src="${
+        userMessagesUnread.length > 0 ? "images/notification-bell-filled.png" : "images/notification-bell-empty.png"
+    }" alt="AltText" width="30px" />${
+        userMessagesUnread.length > 0
+            ? `<div class="notificationBtn notifNumberContainer"><span class="notifNumber">${userMessagesUnread.length}</span></div>`
+            : ""
+    }`;
+};
 
 //grab items from dom
 const mainContainer = document.querySelector(".beta");
@@ -95,6 +103,6 @@ mainContainer.addEventListener("change", (event) => {
 });
 
 //event listener for notification button updating itself
-mainContainer.addEventListener("notificationUpdate", event => {
+mainContainer.addEventListener("notificationUpdate", (event) => {
     document.querySelector(".notification").innerHTML = notification();
-})
+});

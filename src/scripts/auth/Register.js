@@ -49,6 +49,7 @@ mainContainer.addEventListener("click", (clickEvent) => {
     if (users.find((user) => user.email === newEmail)) {
       window.alert("This email is already in use");
     } else {
+      setAuthStateLogin()
       sendUser(dataToSendToAPI).then(() =>
         mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
       );

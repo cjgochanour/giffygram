@@ -1,4 +1,4 @@
-import {getUsers} from "./dataAccess.js";
+import {getUsers} from "../dataAccess.js";
 //function returns post so that it can appear in post list
 export const Post = (post) => {
   const users = getUsers();

@@ -1,4 +1,4 @@
-import { getChosenUser, setDisplayPostCreateTrue } from "../dataAccess.js";
+import { fetchPosts, getChosenUser, setDisplayPostCreateTrue } from "../dataAccess.js";
 import { Post } from "./Post.js";
 import { getPosts } from "../dataAccess.js";
 
@@ -12,7 +12,8 @@ mainContainer.addEventListener("click", (event) => {
 });
 
 mainContainer.addEventListener("postListChanged", () => {
-    document.querySelector(".postList").innerHTML = PostList();
+    fetchPosts()
+        .then(() => document.querySelector(".postList").innerHTML = PostList());
 });
 
 export const PostList = () => {

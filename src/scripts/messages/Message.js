@@ -15,7 +15,7 @@ export const Message = (msg) => {
 } 
 
 //grab container
-mainContainer = document.querySelector(".beta");
+const mainContainer = document.querySelector(".beta");
 
 //event listeners for pressing read button
 mainContainer.addEventListener("click", clickEvent => {
@@ -27,6 +27,6 @@ mainContainer.addEventListener("click", clickEvent => {
         currentMessage.read = true;
         
         updateMessage(currentMessage)
-            .then(() => fetchMessages())
+            .then(() => mainContainer.dispatchEvent(new CustomEvent("msgListChanged")));
     }
 })

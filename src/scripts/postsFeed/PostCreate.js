@@ -22,14 +22,13 @@ mainContainer.addEventListener("click", (event) => {
             const post = { subject, gifLink, story, timestamp, authorId };
 
             sendPost(post)
-                .then(() => fetchPosts())
                 .then(() => {
                     setDisplayPostCreateFalse();
-                    mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
                     document.querySelector(".postCreate").style.visibility = "hidden";
                     document.querySelector("input[name='postTitle']").value = "";
                     document.querySelector("input[name='gifURL']").value = "";
                     document.querySelector("textarea[name='postComment']").value = "";
+                    mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
                 });
         } else {
             window.alert("Please Enter A GIF URL, Title, and Comment");

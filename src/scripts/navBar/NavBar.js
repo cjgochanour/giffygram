@@ -1,4 +1,4 @@
-import { getCurrentUser, getMessages, getUsers } from "../dataAccess.js"
+import { getCurrentUser, getMessages, getUsers, setChosenUser } from "../dataAccess.js"
 import { msgClose, msgOpen, getMsgCol, setMsgColFalse, setMsgColTrue } from "../messages/MessageSideBar.js";
 
 export const Navbar = () => {

@@ -1,11 +1,15 @@
 import { MessageNavbar } from "./MessageNavbar.js";
 import { MessageList } from "./MessageList.js";
+import { MessageForm } from "./MessageCreate.js";
 
 
 export const MessageSideBar = () => {
     return `
         <section class="msgNavbar msgSidebarItem">
             ${MessageNavbar()}
+        </section>
+        <section class="msgCreate msgSidebarItem">
+            ${MessageForm()}
         </section>
         <section class="msgList msgSidebarItem">
             ${MessageList()}

@@ -206,3 +206,16 @@ export const deleteLike = (likeId) => {
 export const deleteMessage = (messageId) => {
     return fetch(`${API}/messages/${messageId}`, { method: "DELETE" });
 };
+
+//PUT functions for the database
+export const updateMessage = (messageUpdateObject) => {
+    const fetchOptions = {
+        method: "PUT",
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(messageUpdateObject)
+    };
+
+    return fetch(`${API}/messages/${messageUpdateObject.id}`, fetchOptions);
+}

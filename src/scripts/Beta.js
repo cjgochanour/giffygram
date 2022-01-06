@@ -7,13 +7,13 @@ export const Beta = () => {
     // Show user's main page for post stuff
     return `
         <article class="mainPage">
-            <section class="navbar">
+            <section class="navbar mainPageItem">
                 ${Navbar()}
             </section>
-            <section class="postList">
+            <section class="postFeed mainPageItem">
             ${PostList()}
             </section>
-            <section class="messSideBar">
+            <section class="msgSidebar mainPageItem">
                 ${MessageSideBar()}
             </section>
         </article>

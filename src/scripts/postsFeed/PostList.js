@@ -11,7 +11,7 @@ export const PostList = () => {
         posts = posts.filter((post) => post.authorId === chosenUser);
     }
 
-    return `<ul><li><button class="postListItem postBtn">Create Post</button></li>${posts
+    return `<ul class="postList"><li><button class="postListItem postBtn">Create Post</button></li>${posts
         .map((post) => Post(post))
         .join("")}</ul>`;
 };

@@ -1,12 +1,42 @@
+import { getCurrentUser, sendPost, setDisplayPostCreateFalse } from "../dataAccess.js";
+
+const mainContainer = document.querySelector(".beta");
+
+mainContainer.addEventListener("click", (event) => {
+    if (event.target.className === "closeBtn") {
+        document.querySelector(".postCreate").style.visibility = "hidden";
+        setDisplayPostCreateFalse();
+    }
+});
+
+mainContainer.addEventListener("click", (event) => {
+    if (event.target.id === "sendPost") {
+        const author = getCurrentUser();
+        const subject = document.querySelector("input[name='postTitle']").value;
+        const gifLink = document.querySelector("input[name='gifURL']").value;
+        const story = document.querySelector("textarea[name='postComment']").value;
+        const timestamp = Date.now();
+        const authorId = author.id;
+
+        const post = { subject, gifLink, story, timestamp, authorId };
+
+        sendPost(post).then(() => {
+            mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+            setDisplayPostCreateFalse();
+            document.querySelector(".postCreate").style.visibility = "hidden";
+        });
+    }
+});
+
 export const PostCreate = () => {
     return `
-        <div class="PostCreate">
-            <img class="closeBtn" src="images/closeX.png" alt="close post creation">
+            <img id="closeBtn" class="closeBtn" src="images/closeX.png" alt="close post creation" width="30px">
             <form>
                 <input type="text" name="gifURL" id="postUrlInput" placeholder="URL:" />
                 <input type="text" name="postTitle" id="postTitle" placeholder="Title:" />
-                <textarea name="postComment" id="postComment" placeholder="Comment:" />
+                <textarea name="postComment" id="postComment" placeholder="Comment:">
+                </textarea>
             </form>
             <button id="sendPost">Submit Post</button>
-        </div>`;
+`;
 };

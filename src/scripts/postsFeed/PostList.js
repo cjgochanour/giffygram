@@ -1,14 +1,13 @@
-import { getChosenUser } from "../dataAccess.js";
+import { getChosenUser, setDisplayPostCreateTrue } from "../dataAccess.js";
 import { Post } from "./Post.js";
 import { getPosts } from "../dataAccess.js";
-import { PostCreate } from "../createForms/PostCreate.js";
 
 const mainContainer = document.querySelector(".beta");
 
 mainContainer.addEventListener("click", (event) => {
     if (event.target.id === "postBtn") {
-        const postList = document.querySelector(".postList");
-        postList.innerHTML = PostCreate();
+        document.querySelector(".postCreate").style.visibility = "visible";
+        setDisplayPostCreateTrue();
     }
 });
 
@@ -21,7 +20,7 @@ export const PostList = () => {
         posts = posts.filter((post) => post.authorId === chosenUser);
     }
 
-    return `<ul><li><button id="postBtn" class="postListItem postBtn">Create Post</button></li>${posts
+    return `<ul class="postList"><li><button id="postBtn" class="postListItem postBtn">Create Post</button></li>${posts
         .map((post) => Post(post))
         .join("")}</ul>`;
 };

@@ -2,7 +2,7 @@ import { getUsers, sendMessage, getCurrentUser } from "../dataAccess.js";
 
 const mainContainer = document.querySelector(".beta")
 
-export const messageForm = () => {
+export const MessageForm = () => {
   const users = getUsers();
 
   let html = `        
@@ -24,7 +24,7 @@ export const messageForm = () => {
                     <textarea type="text" name="messageCreate"></textarea>
             </fieldset>
         </form>
-            <button class="msgList" id="sendMessage">Send</button>
+            <button class="sendMessageBtn messageFormItem" id="sendMessage">Send</button>
     </div>`;
     return html;
 };
@@ -48,10 +48,9 @@ mainContainer.addEventListener("click", (event) => {
         
           
           sendMessage(dataToSendToAPI)
-          .then(() => fetchMessages())
-          .then(() => {
-          mainContainer.dispatchEvent(new CustomEvent("msgListChanged"));     
-          });
+            .then(() => {
+            mainContainer.dispatchEvent(new CustomEvent("msgListChanged"));     
+            });
   
   }
 })

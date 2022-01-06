@@ -49,6 +49,7 @@ mainContainer.addEventListener("click", (event) => {
           
           sendMessage(dataToSendToAPI)
             .then(() => {
+            window.alert("Message Successfuly Sent")
             mainContainer.dispatchEvent(new CustomEvent("msgListChanged"));     
             });
   

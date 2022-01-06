@@ -1,5 +1,4 @@
 import { fetchPosts, getCurrentUser, sendPost, setDisplayPostCreateFalse } from "../dataAccess.js";
-import { PostList } from "../postsFeed/PostList.js";
 
 const mainContainer = document.querySelector(".beta");
 
@@ -25,7 +24,6 @@ mainContainer.addEventListener("click", (event) => {
             sendPost(post)
                 .then(() => fetchPosts())
                 .then(() => {
-                    // mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
                     setDisplayPostCreateFalse();
                     mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
                     document.querySelector(".postCreate").style.visibility = "hidden";

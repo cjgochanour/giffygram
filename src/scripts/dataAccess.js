@@ -6,43 +6,43 @@ const applicationState = {
         users: [],
         posts: [],
         likes: [],
-        messages: []
+        messages: [],
     },
-	currentUser: {},
-	feed: {
-		chosenUser: null,
-		displayFavorites: false,
-		displayMessages: false,
+    currentUser: {},
+    feed: {
+        chosenUser: null,
+        displayFavorites: false,
+        displayMessages: false,
         displayNavBar: true,
         displayMessageCreate: false,
-        displayPostCreate: false
-	}
+        displayPostCreate: false,
+    },
 };
 
 //fetch each resource from database and put into applicationState
 
 export const fetchUsers = () => {
-	return fetch(`${API}/users`)
-		.then((res) => res.json())
-		.then((users) => applicationState.currentState.users = users);
+    return fetch(`${API}/users`)
+        .then((res) => res.json())
+        .then((users) => (applicationState.currentState.users = users));
 };
 
 export const fetchPosts = () => {
-    return fetch(`${API}/posts`)
+    return fetch(`${API}/posts?_sort=id&_order=desc`)
         .then((res) => res.json())
-        .then((posts) => applicationState.currentState.posts = posts);
+        .then((posts) => (applicationState.currentState.posts = posts));
 };
 
 export const fetchLikes = () => {
     return fetch(`${API}/likes`)
         .then((res) => res.json())
-        .then((likes) => applicationState.currentState.likes = likes);
+        .then((likes) => (applicationState.currentState.likes = likes));
 };
 
 export const fetchMessages = () => {
     return fetch(`${API}/messages`)
         .then((res) => res.json())
-        .then((messages) => applicationState.currentState.messages = messages);
+        .then((messages) => (applicationState.currentState.messages = messages));
 };
 
 //get functions to retrieve information from applicationState
@@ -146,9 +146,9 @@ export const sendUser = (userToPost) => {
     const fetchOptions = {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify(userToPost)
+        body: JSON.stringify(userToPost),
     };
 
     return fetch(`${API}/users`, fetchOptions);
@@ -158,9 +158,9 @@ export const sendPost = (postToPost) => {
     const fetchOptions = {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify(postToPost)
+        body: JSON.stringify(postToPost),
     };
 
     return fetch(`${API}/posts`, fetchOptions);
@@ -170,9 +170,9 @@ export const sendLike = (likeToPost) => {
     const fetchOptions = {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify(likeToPost)
+        body: JSON.stringify(likeToPost),
     };
 
     return fetch(`${API}/likes`, fetchOptions);
@@ -182,9 +182,9 @@ export const sendMessage = (messageToPost) => {
     const fetchOptions = {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify(messageToPost)
+        body: JSON.stringify(messageToPost),
     };
 
     return fetch(`${API}/messages`, fetchOptions);

@@ -1,9 +1,7 @@
-/* @import 'navigation.css';
-@import 'footer.css';
-@import 'feed.css';
-@import 'post.css';
-@import 'updates.css';
-@import 'message.css';
+@import "./navBar/NavBar.css";
+@import "./messages/MessageSideBar.css";
+@import "./footer/Footer.css";
+@import "./postsFeed/PostList.css";
 @import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One"); */
 /*Typography
 --------------------------------------------------------------*/
@@ -22,27 +20,8 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 2px;
 }
 
-.actionIcon {
-    height: 1.2em;
-    margin: 0.5em 0.5em;
-    cursor: pointer;
-}
-
-.highlight {
-    border-color: purple;
-}
-
-.fakeLink {
-    color: -webkit-link;
-    cursor: pointer;
-    text-decoration: underline;
-    background: none!important;
-    border: none;
-    cursor: pointer;
-}
-
-.fakeLink:hover {
-    font-weight: bold;
+ul {
+    list-style: none;
 }
 
 .loginForm {
@@ -51,4 +30,8 @@ h1, h2, h3, h4, h5, h6 {
 
 #logo {
     cursor: pointer;
+}
+
+.mainPage {
+    display: flex;
 }

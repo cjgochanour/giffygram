@@ -2,7 +2,9 @@
 @import "./messages/MessageSideBar.css";
 @import "./footer/Footer.css";
 @import "./postsFeed/PostList.css";
-@import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One"); */
+@import "./postsFeed/PostCreate.css";
+@import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
+*/
 /*Typography
 --------------------------------------------------------------*/
 
@@ -15,7 +17,13 @@ body, button, input, select, textarea {
     margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 2rem;
     font-family: "Patua One", serif;
     letter-spacing: 2px;
 }

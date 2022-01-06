@@ -1,0 +1,10 @@
+.postCreate {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 25vh 25vw;
+    z-index: 3;
+    backdrop-filter: blur(3px);
+}

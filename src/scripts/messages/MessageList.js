@@ -13,3 +13,7 @@ export const MessageList = () => {
             ${curUserMsg.map(msg => Message(msg)).join("")}
         </ul>`
 }
+
+mainContainer.addEventListener("msgListChanged", () => {
+    document.querySelector(".msgList").innerHTML = MessageList();
+});

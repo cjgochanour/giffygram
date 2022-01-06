@@ -11,7 +11,7 @@ export const Navbar = () => {
         <section class="navbarCollapse navbarItem">
             <div id="homeBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Home</div>
             <div id="userBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />${currentUser.firstName} ${currentUser.lastName}</div>
-            <div id="notification" class="navcolItem notification">${notification()}</div>
+            <div id="notification" class="navcolItem notification notificationBtn">${notification()}</div>
             <div id="writeMessageBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Compose Message</div>
             <div id="postGifBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Post Gif</div>
             <div id="filterLikeBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Filter By Likes</div>
@@ -35,7 +35,7 @@ const notification = () => {
     const userMessages = allMessages.filter(msg => msg.recipientId === currentUser.id);
     const userMessagesUnread = userMessages.filter(msg => !msg.read);
 
-    return `<img id="notifImg" class="notification notifImg" src="${(userMessagesUnread.length > 0) ? "images/notification-bell-filled.png" : "images/notification-bell-empty.png"}" alt="AltText" width="30px" />${(userMessagesUnread.length > 0) ? `<div class="notifNumberContainer"><span class="notifNumber">${userMessagesUnread.length}</span></div>` : ""}`
+    return `<img id="notifImg" class="notificationBtn notifImg" src="${(userMessagesUnread.length > 0) ? "images/notification-bell-filled.png" : "images/notification-bell-empty.png"}" alt="AltText" width="30px" />${(userMessagesUnread.length > 0) ? `<div class="notificationBtn notifNumberContainer"><span class="notifNumber">${userMessagesUnread.length}</span></div>` : ""}`
 }
 
 //grab items from dom
@@ -69,7 +69,7 @@ mainContainer.addEventListener("click", (clickEvent) => {
 
 //open messages window button event listener
 mainContainer.addEventListener("click", (clickEvent) => {
-    if (clickEvent.target.id === "notification" || clickEvent.target.id === "notifImg") {
+    if (clickEvent.target.classList.contains("notificationBtn")) {
         if (getMsgCol()) {
             msgOpen();
             setMsgColFalse();

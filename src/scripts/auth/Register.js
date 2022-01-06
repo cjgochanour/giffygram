@@ -1,5 +1,10 @@
+import { sendUser, getUsers } from "../dataAccess.js";
+import { setAuthStateLogin } from "./Auth.js";
+
+const mainContainer = document.querySelector(".beta");
+
 export const Register = () => {
-    return `
+  return `
         <div class="registerForm">
             <form>
             <fieldset>
@@ -23,3 +28,30 @@ export const Register = () => {
         <button id="registerButton">Register</button>
         </div>`;
 };
+
+mainContainer.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id === "registerButton") {
+    const users = getUsers();
+    const newFirstName = document.querySelector(
+      "input[name='firstName']"
+    ).value;
+    const newLastName = document.querySelector("input[name='lastName']").value;
+    const newEmail = document.querySelector("input[name='email']").value;
+    const newPassword = document.querySelector("input[name='password']").value;
+
+    const dataToSendToAPI = {
+      firstName: newFirstName,
+      lastName: newLastName,
+      email: newEmail,
+      password: newPassword,
+    };
+
+    if (users.find((user) => user.email === newEmail)) {
+      window.alert("This email is already in use");
+    } else {
+      sendUser(dataToSendToAPI).then(() =>
+        mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+      );
+    }
+  }
+});

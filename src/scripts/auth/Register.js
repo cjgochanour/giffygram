@@ -1,5 +1,5 @@
 import { sendUser, getUsers } from "../dataAccess.js";
-import { setAuthStateLogin } from "./Auth.js";
+import { setAuthStateLogin, setAuthStateReg } from "./Auth.js";
 
 const mainContainer = document.querySelector(".beta");
 
@@ -24,7 +24,7 @@ export const Register = () => {
                     <input type="password" name="password" placeholder="Password" />
                 </fieldset>
             </form>
-        <button id="loginButton">Login</button>
+        <button id="returnToLoginButton">Return to Login</button>
         <button id="registerButton">Register</button>
         </div>`;
 };
@@ -32,9 +32,7 @@ export const Register = () => {
 mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "registerButton") {
     const users = getUsers();
-    const newFirstName = document.querySelector(
-      "input[name='firstName']"
-    ).value;
+    const newFirstName = document.querySelector("input[name='firstName']").value;
     const newLastName = document.querySelector("input[name='lastName']").value;
     const newEmail = document.querySelector("input[name='email']").value;
     const newPassword = document.querySelector("input[name='password']").value;
@@ -54,5 +52,12 @@ mainContainer.addEventListener("click", (clickEvent) => {
         mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
       );
     }
+  }
+});
+
+mainContainer.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id === "returnToLoginButton") {
+    setAuthStateLogin()
+    mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
   }
 });

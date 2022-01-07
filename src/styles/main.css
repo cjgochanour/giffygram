@@ -4,9 +4,12 @@
 @import "./postsFeed/PostList.css";
 @import "./postsFeed/PostCreate.css";
 @import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
-*/
+
 /*Typography
 --------------------------------------------------------------*/
+* {
+    margin: 0;
+}
 
 body, button, input, select, textarea {
     color: #404040;
@@ -42,4 +45,5 @@ ul {
 
 .mainPage {
     display: flex;
+    background-color: #192428;
 }

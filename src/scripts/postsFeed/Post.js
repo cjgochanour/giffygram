@@ -28,23 +28,25 @@ const postInnerHtml = (post) => {
 	const author = users.find((user) => user.id === post.authorId);
 
 	return `
-    <h2 class="postItem postSubject">${post.subject}<h2>
-    <img class="postItem postImage" src="${post.gifLink}" width="200px"/>
+    <h2 class="postItem postSubject">${post.subject}</h2>
+    <img class="postItem postImage" src="${post.gifLink}"/>
     <div class= "postItem postStory">${post.story}</div>
     <div class="postItem postAuthor" id="postAuthor--${post.authorId}">Posted by: ${author.firstName} ${author.lastName}</div>
-    <div class="postItem postDate">${new Date(post.timestamp).toLocaleDateString("en-US")} </div>
-    <img class="postItem postLikeBtn" id="likeBtn--${post.id}" src="${
-		likes.find(
-			(like) => like.userId === currentUser.id && like.postId === post.id
-		)
-			? "./images/favorite-star-yellow.svg"
-			: "./images/favorite-star-blank.svg"
-	}" width="20px" />
-    ${
-		post.authorId === currentUser.id
-			? `<img class="postItem postDelBtn" id="delBtn--${post.id}" src="./images/block.svg" width="20px" />`
-			: ""
-	}`;
+	<div class="postItem postBottomBar">
+		<div class="postItem postDate">${new Date(post.timestamp).toLocaleDateString("en-US")} </div>
+		<img class="postItem postImgBtn postLikeBtn" id="likeBtn--${post.id}" src="${
+			likes.find(
+				(like) => like.userId === currentUser.id && like.postId === post.id
+			)
+				? "./images/favorite-star-yellow.svg"
+				: "./images/favorite-star-blank.svg"
+		}" />
+		${
+			post.authorId === currentUser.id
+				? `<img class="postItem postImgBtn postDelBtn" id="delBtn--${post.id}" src="./images/block.svg" />`
+				: ""
+		}
+	</div>`;
 };
 
 //grab container

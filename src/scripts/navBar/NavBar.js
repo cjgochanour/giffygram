@@ -38,8 +38,8 @@ const mainContainer = document.querySelector(".beta");
 
 //collapse functions
 export const navOpen = () => {
-    document.querySelector(".navbarCollapse").style.width = "10vw";
-    document.querySelector(".postFeed").style.marginLeft = "10vw";
+    document.querySelector(".navbarCollapse").style.width = "175px";
+    document.querySelector(".postFeed").style.marginLeft = "175px";
 };
 
 export const navClose = () => {

@@ -75,7 +75,7 @@ export const msgWriteOpen = () => {
 };
 
 export const msgWriteClose = () => {
-	document.querySelector(".msgCreate").style.maxHeight = "0";
+	document.querySelector(".msgCreate").style.height = "0";
 	document.querySelector(".msgCreate").style.overflowY = "hidden";
 	document.querySelector(".msgList").style.marginTop = "0";
 };

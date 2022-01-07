@@ -1,4 +1,4 @@
-import { getMessages, getCurrentUser, fetchMessages } from "../dataAccess.js";
+import { getMessages, getCurrentUser, fetchMessages, updateMessage } from "../dataAccess.js";
 import { Message } from "./Message.js";
  
 const mainContainer = document.querySelector(".beta");
@@ -12,10 +12,12 @@ export const MessageList = () => {
 		(msg) => msg.recipientId === currentUser.id
 	);
 	const curUserMsgUnread = curUserMsg.filter((msg) => !msg.read);
+	const curUserMsgRead = curUserMsg.filter((msg) => msg.read);
 
 	return `
         <ul class="msgSideBarItem msgList">
             ${curUserMsgUnread.map((msg) => Message(msg)).join("")}
+			${curUserMsgRead.map((msg) => Message(msg)).join("")}
         </ul>`;
 };
 
@@ -27,3 +29,21 @@ mainContainer.addEventListener("msgListChanged", () => {
 		document.querySelector(".msgList").innerHTML = MessageList();
 	});
 });
+
+// to mark messages as read when you open the msgSidebar. Then rerender notification button with its event.
+export const markMsgRead = () => {
+	const messages = getMessages();
+	const currentUser = getCurrentUser();
+	const curUserMsg = messages.filter(msg => msg.recipientId === currentUser.id);
+	const curUserMsgUnread = curUserMsg.filter((msg) => !msg.read);
+	const promiseArray = [];
+
+	curUserMsgUnread.forEach(msg => {
+		msg.read = true;
+		promiseArray.push(updateMessage(msg));
+	});
+
+	Promise.all(promiseArray)
+		.then(() => fetchMessages())
+		.then(() => mainContainer.dispatchEvent(new CustomEvent("notificationUpdate")))
+}

@@ -87,10 +87,10 @@ mainContainer.addEventListener("change", (event) => {
     if (event.target.id === "favFilter") {
         if (event.target.checked) {
             setDisplayFavoritesTrue();
-            mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
+            mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
         } else {
             setDisplayFavoritesFalse();
-            mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
+            mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
         }
     }
 });

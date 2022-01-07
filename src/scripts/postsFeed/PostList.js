@@ -31,15 +31,8 @@ export const PostList = () => {
     }
     //if displayFavorites = true, filter posts by favorited
     if (displayFavorites) {
-        posts = posts.filter((post) => {
-            for (const like of likes) {
-                if (like.postId === post.id && like.userId === currentUser.id) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });
+        const userLiked = likes.filter((like) => like.userId === currentUser.id);
+        posts = posts.filter((post) => userLiked.find((like) => like.postId === post.id));
     }
 
     return `<ul class="postList"><li><button id="postBtn" class="postListItem postBtn">Create Post</button></li>${posts

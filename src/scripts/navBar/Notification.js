@@ -34,5 +34,5 @@ mainContainer.addEventListener("click", (clickEvent) => {
 
 //event listener for notification button updating itself
 mainContainer.addEventListener("notificationUpdate", (event) => {
-    document.querySelector(".notification").innerHTML = notification();
+    document.querySelector(".notification").innerHTML = Notification();
 });

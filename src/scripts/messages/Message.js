@@ -10,23 +10,25 @@ export const Message = (msg) => {
             <h4 class="msgItem msgAuthor">From: ${author.firstName} ${author.lastName}</h4>
             <div class="msgItem msgText">${msg.message}</div>
             <div class="msgItem msgTimestamp">${new Date(msg.timestamp).toLocaleString("en-US")}</div>
-            <img class="msgItem msgMarkRead" id="msgRead--${msg.id}" src="./images/betaLogo.png" alt="Mark As Read" width="20px"/>
+            <div class="msgReadImg">
+            ${(msg.read) ? "" : `<img class="msgItem msgMarkRead" id="msgRead--${msg.id}" src="./images/unread-message.png" alt="Mark As Read" width="20px"/>"`}
+            </div
         </li>`
 } 
 
 //grab container
 const mainContainer = document.querySelector(".beta");
 
-//event listeners for pressing read button
-mainContainer.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id.startsWith("msgRead")) {
-        const [ ,msgIdString] = clickEvent.target.id.split("--");
-        const msgId = parseInt(msgIdString);
-        const messages = getMessages();
-        const currentMessage = messages.find(msg => msg.id === msgId);
-        currentMessage.read = true;
+// //event listeners for pressing read button
+// mainContainer.addEventListener("click", clickEvent => {
+//     if (clickEvent.target.id.startsWith("msgRead")) {
+//         const [ ,msgIdString] = clickEvent.target.id.split("--");
+//         const msgId = parseInt(msgIdString);
+//         const messages = getMessages();
+//         const currentMessage = messages.find(msg => msg.id === msgId);
+//         currentMessage.read = true;
         
-        updateMessage(currentMessage)
-            .then(() => mainContainer.dispatchEvent(new CustomEvent("msgListChanged")));
-    }
-})
+//         updateMessage(currentMessage)
+//             .then(() => mainContainer.dispatchEvent(new CustomEvent("msgListChanged")));
+//     }
+// })

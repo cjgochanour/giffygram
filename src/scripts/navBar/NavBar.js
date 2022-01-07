@@ -1,4 +1,4 @@
-import { getCurrentUser, getUsers, setChosenUser } from "../dataAccess.js";
+import { getCurrentUser, getUsers, setChosenUser, getDisplayNavBar, setDisplayNavBarTrue, setDisplayNavBarFalse } from "../dataAccess.js";
 import { Notification } from "./Notification.js";
 
 export const Navbar = () => {
@@ -46,17 +46,14 @@ export const navClose = () => {
     document.querySelector(".postFeed").style.marginLeft = "0";
 };
 
-//collapse event listener and variable
-let navCollapsed = true;
-
 mainContainer.addEventListener("click", (clickEvent) => {
     if (clickEvent.target.id === "navColBtn") {
-        if (navCollapsed) {
-            navOpen();
-            navCollapsed = false;
-        } else {
+        if (getDisplayNavBar()) {
             navClose();
-            navCollapsed = true;
+            setDisplayNavBarFalse();
+        } else {
+            navOpen();
+            setDisplayNavBarTrue();        
         }
     }
 });
@@ -72,6 +69,6 @@ mainContainer.addEventListener("click", (clickEvent) => {
 mainContainer.addEventListener("change", (event) => {
     if (event.target.id === "filterDropDown") {
         setChosenUser(parseInt(event.target.value));
-        mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
+        mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
     }
 });

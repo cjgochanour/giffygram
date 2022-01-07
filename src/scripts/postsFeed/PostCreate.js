@@ -28,7 +28,7 @@ mainContainer.addEventListener("click", (event) => {
                     document.querySelector("input[name='postTitle']").value = "";
                     document.querySelector("input[name='gifURL']").value = "";
                     document.querySelector("textarea[name='postComment']").value = "";
-                    mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
+                    mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
                 });
         } else {
             window.alert("Please Enter A GIF URL, Title, and Comment");

@@ -1,5 +1,5 @@
 import { MessageNavbar } from "./MessageNavbar.js";
-import { MessageList } from "./MessageList.js";
+import { MessageList, markMsgRead } from "./MessageList.js";
 import { MessageForm } from "./MessageCreate.js";
 
 export const MessageSideBar = () => {
@@ -22,11 +22,15 @@ const mainContainer = document.querySelector(".beta");
 
 //collapse functions
 export const msgOpen = () => {
+    //mark all messages as read, but they are not rendered as such because msg list has already been rendered
+    markMsgRead();
     document.querySelector(".msgSidebar").style.width = "20vw";
     document.querySelector(".postFeed").style.marginRight = "20vw";
 }
 
 export const msgClose = () => {
+    //rerender message list so now all the read message do not get marked as read. will ALSO update with any new messages that have been recieved.
+    mainContainer.dispatchEvent(new CustomEvent("msgListChanged"));
     document.querySelector(".msgSidebar").style.width = "0";
     document.querySelector(".postFeed").style.marginRight = "0";
 }

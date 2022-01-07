@@ -110,6 +110,10 @@ export const setChosenUser = (chosenUserId) => {
     applicationState.feed.chosenUser = chosenUserId;
 };
 
+export const setChosenYear = (chosenYear) => {
+    applicationState.feed.chosenYear = chosenYear;
+};
+
 export const setDisplayFavoritesFalse = () => {
     applicationState.feed.displayFavorites = false;
 };

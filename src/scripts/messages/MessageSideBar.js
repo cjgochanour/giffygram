@@ -2,6 +2,7 @@ import { MessageNavbar } from "./MessageNavbar.js";
 import { MessageList, markMsgRead } from "./MessageList.js";
 import { MessageForm } from "./MessageCreate.js";
 
+
 export const MessageSideBar = () => {
     return `
         <section class="msgSidebarItem msgInteract">

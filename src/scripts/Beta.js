@@ -1,5 +1,5 @@
 import { Navbar } from "./navBar/NavBar.js";
-import { PostList } from "./postsFeed/PostList.js";
+import { PostsFeed } from "./postsFeed/PostsFeed.js"
 import { MessageSideBar } from "./messages/MessageSideBar.js";
 import { Footer } from "./footer/Footer.js";
 import { PostCreate } from "./postsFeed/PostCreate.js";
@@ -15,7 +15,7 @@ export const Beta = () => {
                 ${Navbar()}
             </section>
             <section class="postFeed mainPageItem">
-            ${PostList()}
+                ${PostsFeed()}
             </section>
             <section class="msgSidebar mainPageItem">
                 ${MessageSideBar()}

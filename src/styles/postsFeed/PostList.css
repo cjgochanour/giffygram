@@ -1,8 +1,7 @@
 @import "./Post.css";
 
 .postFeed {
-    transition: margin-left .5s; /* If you want a transition effect */
-    transition: margin-right .5s;
+    transition: margin-left .5s, margin-right .5s; /* If you want a transition effect */
     width: 100vw;
 }
 
@@ -10,4 +9,5 @@
     overflow: auto;
     border: blueviolet solid 2px;
     padding: 0;
+    margin: 0;
 }

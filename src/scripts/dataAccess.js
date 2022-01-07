@@ -1,5 +1,4 @@
 const API = "http://localhost:8088";
-const mainContainer = document.querySelector(".beta");
 
 const applicationState = {
     currentState: {
@@ -11,12 +10,13 @@ const applicationState = {
     currentUser: {},
     feed: {
         chosenUser: null,
+        chosenYear: null,
         displayFavorites: false,
         displayMessages: false,
         displayNavBar: true,
         displayMessageCreate: false,
         displayPostCreate: false,
-        postsFeedState: "postList"
+        postsFeedState: "postList",
     },
 };
 
@@ -72,6 +72,10 @@ export const getChosenUser = () => {
     return applicationState.feed.chosenUser;
 };
 
+export const getChosenYear = () => {
+    return applicationState.feed.chosenYear;
+};
+
 export const getDisplayFavorites = () => {
     return applicationState.feed.displayFavorites;
 };
@@ -94,7 +98,7 @@ export const getDisplayPostCreate = () => {
 
 export const getPostsFeedState = () => {
     return applicationState.feed.postsFeedState;
-}
+};
 
 //Set functions that allow us to set the currentUser and feed properties in applicationState
 
@@ -104,6 +108,10 @@ export const setCurrentUser = (userObject) => {
 
 export const setChosenUser = (chosenUserId) => {
     applicationState.feed.chosenUser = chosenUserId;
+};
+
+export const setChosenYear = (chosenYear) => {
+    applicationState.feed.chosenYear = chosenYear;
 };
 
 export const setDisplayFavoritesFalse = () => {
@@ -148,15 +156,15 @@ export const setDisplayPostCreateTrue = () => {
 
 export const setPostsFeedStatePosts = () => {
     applicationState.feed.postsFeedState = "postList";
-}
+};
 
 export const setPostsFeedStateProfile = () => {
     applicationState.feed.postsFeedState = "profile";
-}
+};
 
 export const setPostsFeedStateUser = () => {
     applicationState.feed.postsFeedState = "userProfile";
-}
+};
 
 //POST functions to add to the database
 export const sendUser = (userToPost) => {

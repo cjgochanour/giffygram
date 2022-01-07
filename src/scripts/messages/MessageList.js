@@ -1,7 +1,7 @@
 import { getMessages, getCurrentUser, fetchMessages } from "../dataAccess.js";
 import { Message } from "./Message.js";
  
-const mainContainer = document.querySelector(".beta");
+
 
 //make a list of messages from the message module
 export const MessageList = () => {

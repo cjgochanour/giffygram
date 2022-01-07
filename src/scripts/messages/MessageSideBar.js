@@ -34,18 +34,3 @@ export const msgClose = () => {
     //rerender message list so now all the read message do not get marked as read. will ALSO update with any new messages that have been recieved.
     mainContainer.dispatchEvent(new CustomEvent("msgListChanged"));
 }
-
-//collapse variable
-let msgCollapsed = true;
-
-export const getMsgCol = () => {
-    return msgCollapsed;
-}
-
-export const setMsgColTrue = () => {
-    msgCollapsed = true;
-}
-
-export const setMsgColFalse = () => {
-    msgCollapsed = false;
-}

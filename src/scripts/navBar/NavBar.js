@@ -1,4 +1,4 @@
-import { getCurrentUser, getDisplayMessages, getUsers, setChosenUser, setDisplayMessageCreateTrue, setDisplayMessagesTrue, getDisplayMessageCreate, getDisplayPostCreate, setDisplayPostCreateTrue,  getDisplayNavBar, setDisplayNavBarTrue, setDisplayNavBarFalse } from "../dataAccess.js";
+import { getCurrentUser, getDisplayMessages, getUsers, setChosenUser, setDisplayMessageCreateTrue, setDisplayMessagesTrue, getDisplayMessageCreate, getDisplayPostCreate, setDisplayPostCreateTrue,  getDisplayNavBar, setDisplayNavBarTrue, setDisplayNavBarFalse, setPostsFeedStateUser, setPostsFeedStatePosts } from "../dataAccess.js";
 import { Notification } from "./Notification.js";
 import { msgOpen } from "../messages/MessageSideBar.js";
 import { msgWriteOpen } from "../messages/MessageCreate.js";
@@ -11,13 +11,13 @@ export const Navbar = () => {
     return `
         <img class="navbarItem navColBtn" id="navColBtn" src="images/betaLogo.png" alt="AltText" width="50px" />
         <section class="navbarCollapse navbarItem">
-            <div id="homeBtn" class="navcolItem" id="navHomeBtn"><img src="images/betaLogo.png" alt="AltText" width="50px" />Home</div>
-            <div id="userBtn" class="navcolItem" id="navUserBtn"><img src="images/betaLogo.png" alt="AltText" width="50px" />${
+            <div id="homeBtn" class="navcolItem navHomeBtn"><img class="navHomeBtn" src="images/betaLogo.png" alt="AltText" width="50px" />Home</div>
+            <div id="userBtn" class="navcolItem navUserBtn"><img class="navUserBtn" src="images/betaLogo.png" alt="AltText" width="50px" />${
                 currentUser.firstName
             } ${currentUser.lastName}</div>
             <div id="notification" class="navcolItem notification notificationBtn">${Notification()}</div>
-            <div id="writeMessageBtn" class="navcolItem" id="writeMsgBtn"><img src="images/betaLogo.png" alt="AltText" width="50px" />Compose Message</div>
-            <div id="postGifBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Post Gif</div>
+            <div id="writeMessageBtn" class="navcolItem writeMsgBtn"><img class="writeMsgBtn" src="images/betaLogo.png" alt="AltText" width="50px" />Compose Message</div>
+            <div id="postGifBtn" class="navcolItem postGifBtn"><img class="postGifBtn" src="images/betaLogo.png" alt="AltText" width="50px" />Post Gif</div>
             <div id="filterLikeBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Filter By Likes</div>
             <select id="filterDropDown" class="navcolItem">
                     <option value="0">Show All Posts</option>
@@ -78,23 +78,23 @@ mainContainer.addEventListener("change", (event) => {
 
 //clicking the home button rerenders the main page with post list being rendered.
 mainContainer.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "navHomeBtn") {
-        setPostsFeedPostStatePosts();
+    if (clickEvent.target.classList.contains("navHomeBtn")) {
+        setPostsFeedStatePosts();
         mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
     }
 })
 
 //clicking the user name rerenders postsFeed with userProfile
 mainContainer.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "navUserBtn") {
-        setPostsFeedPostStateUser();
+    if (clickEvent.target.classList.contains("navUserBtn")) {
+        setPostsFeedStateUser();
         mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
     }
 })
 
 //clicking compose message will open up messages side bar and messageCreate
 mainContainer.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "writeMsgBtn") {
+    if (clickEvent.target.classList.contains("writeMsgBtn")) {
         //open up messageSideBar if it is closed
         if (!getDisplayMessages()) {
             msgOpen();
@@ -111,7 +111,7 @@ mainContainer.addEventListener("click", clickEvent => {
 
 //clicking post gif will pull up the postcreate form
 mainContainer.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "postGifBtn") {
+    if (clickEvent.target.classList.contains("postGifBtn")) {
         if (!getDisplayPostCreate()) {
             document.querySelector(".postCreate").style.visibility = "visible";
             setDisplayPostCreateTrue();

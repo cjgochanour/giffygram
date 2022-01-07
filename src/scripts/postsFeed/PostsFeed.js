@@ -1,20 +1,29 @@
 import { PostList } from "./PostList.js";
-import { getDisplayProfile, setDisplayProfileFalse, setDisplayProfileTrue, fetchPosts } from "../dataAccess.js";
+import { Profile } from "./Profile.js";
+import { UserProfile } from "./UserProfile.js";
+import { getDisplayProfile, fetchPosts } from "../dataAccess.js";
 
 export const PostsFeed = () => {
-    if (getDisplayProfile()) {
-        return Profile();
-    } else {
-        return PostList();
+    switch (getDisplayProfile()) {
+        case "postList":
+            return PostList();
+            break;
+
+        case "profile":
+            return Profile();
+            break;
+
+        case "userProfile":
+            return UserProfile();
+            break;
     }
 }
 
 const mainContainer = document.querySelector(".beta")
 
 // rerender post list and change displayprofile to false
-mainContainer.addEventListener("postListChanged", () => {
+mainContainer.addEventListener("postFeedChanged", () => {
     fetchPosts()
         .then(() => {
-        setDisplayProfileFalse();
         document.querySelector(".postFeed").innerHTML = PostsFeed()});
 });

@@ -16,7 +16,7 @@ const applicationState = {
         displayNavBar: true,
         displayMessageCreate: false,
         displayPostCreate: false,
-        displayProfile: false
+        displayProfile: "postList"
     },
 };
 
@@ -146,12 +146,16 @@ export const setDisplayPostCreateTrue = () => {
     applicationState.feed.displayPostCreate = true;
 };
 
-export const setDisplayProfileFalse = () => {
-    applicationState.feed.displayProfile = false;
+export const setDisplayProfilePosts = () => {
+    applicationState.feed.displayProfile = "postList";
 }
 
-export const setDisplayProfileTrue = () => {
-    applicationState.feed.displayProfile = true;
+export const setDisplayProfileProfile = () => {
+    applicationState.feed.displayProfile = "profile";
+}
+
+export const setDisplayProfileUser = () => {
+    applicationState.feed.displayProfile = "userProfile";
 }
 
 //POST functions to add to the database

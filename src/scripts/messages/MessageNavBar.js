@@ -1,6 +1,6 @@
 import { msgClose, msgOpen } from "./MessageSideBar.js";
 import { msgWriteClose, msgWriteOpen} from "./MessageCreate.js";
-import { getDisplayMessageCreate, setDisplayMessageCreateTrue, setDisplayMessageCreateFalse} from "../dataAccess.js";
+import { getDisplayMessageCreate, setDisplayMessageCreateTrue, setDisplayMessageCreateFalse, getDisplayMessages, setDisplayMessagesTrue, setDisplayMessagesFalse } from "../dataAccess.js";
 
 export const MessageNavbar = () => {
     return `
@@ -13,12 +13,12 @@ const mainContainer = document.querySelector(".beta");
 //event listener for x button image
 mainContainer.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "closeMsgSidebar") {
-        if (getMsgCol()) {
-            msgOpen();
-            setMsgColFalse();
-        } else {
+        if (getDisplayMessages()) {
             msgClose();
-            setMsgColTrue();
+            setDisplayMessagesFalse();
+        } else {
+            msgOpen();
+            setDisplayMessagesTrue();
         }
     }
 })

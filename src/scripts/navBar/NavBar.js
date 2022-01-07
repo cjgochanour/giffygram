@@ -69,6 +69,6 @@ mainContainer.addEventListener("click", (clickEvent) => {
 mainContainer.addEventListener("change", (event) => {
     if (event.target.id === "filterDropDown") {
         setChosenUser(parseInt(event.target.value));
-        mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
+        mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
     }
 });

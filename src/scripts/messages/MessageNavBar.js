@@ -1,4 +1,5 @@
 import { msgClose, msgOpen, getMsgCol, setMsgColFalse, setMsgColTrue } from "./MessageSideBar.js";
+import { msgWriteClose, msgWriteOpen, getMsgWriteCol, setMsgWriteColFalse, setMsgWriteColTrue} from "./MessageCreate.js";
 
 export const MessageNavbar = () => {
     return `
@@ -17,6 +18,19 @@ mainContainer.addEventListener("click", clickEvent => {
         } else {
             msgClose();
             setMsgColTrue();
+        }
+    }
+})
+
+//listener for the compose message image
+mainContainer.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "composeMsgSidebar") {
+        if (getMsgWriteCol()) {
+            msgWriteOpen();
+            setMsgWriteColFalse();
+        } else {
+            msgWriteClose();
+            setMsgWriteColTrue();
         }
     }
 })

@@ -4,11 +4,13 @@ import { MessageForm } from "./MessageCreate.js";
 
 export const MessageSideBar = () => {
     return `
-        <section class="msgNavbar msgSidebarItem">
-            ${MessageNavbar()}
-        </section>
-        <section class="msgCreate msgSidebarItem">
-            ${MessageForm()}
+        <section class="msgSidebarItem msgInteract">
+            <div class="msgNavbar msgSidebarItem">
+                ${MessageNavbar()}
+            </div>
+            <div class="msgCreate msgSidebarItem">
+                ${MessageForm()}
+            </div>
         </section>
         <section class="msgList msgSidebarItem">
             ${MessageList()}

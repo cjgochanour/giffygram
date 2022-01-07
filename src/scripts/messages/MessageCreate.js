@@ -5,8 +5,8 @@ const mainContainer = document.querySelector(".beta")
 export const MessageForm = () => {
   const users = getUsers();
 
-  let html = `        
-    <div class="messageForm">
+  let html = `  
+    <div class="messageForm">      
         <form>
             <fieldset>
                 <select id="msgRecList" class="messageFormItem recipientList">
@@ -50,8 +50,36 @@ mainContainer.addEventListener("click", (event) => {
           sendMessage(dataToSendToAPI)
             .then(() => {
             window.alert("Message Successfuly Sent")
+            msgWriteClose();
+            setMsgWriteColTrue();
             mainContainer.dispatchEvent(new CustomEvent("msgListChanged"));     
             });
   
   }
 })
+
+//collaspe functions
+export const msgWriteOpen = () => {
+    document.querySelector(".msgCreate").style.maxHeight = "14vh";
+    document.querySelector(".msgList").style.marginTop = "13vh";
+}
+
+export const msgWriteClose = () => {
+    document.querySelector(".msgCreate").style.maxHeight = "0";
+    document.querySelector(".msgList").style.marginTop = "0";
+}
+
+//collapse variable
+let msgWriteCollapsed = true;
+
+export const getMsgWriteCol = () => {
+    return msgWriteCollapsed;
+}
+
+export const setMsgWriteColTrue = () => {
+    msgWriteCollapsed = true;
+}
+
+export const setMsgWriteColFalse = () => {
+    msgWriteCollapsed = false;
+}

@@ -5,6 +5,7 @@ import {
     getDisplayFavorites,
     getLikes,
     setDisplayPostCreateTrue,
+    getChosenYear,
 } from "../dataAccess.js";
 import { Post } from "./Post.js";
 import { getPosts } from "../dataAccess.js";
@@ -24,6 +25,7 @@ export const PostList = () => {
     const likes = getLikes();
     const chosenUser = getChosenUser();
     const displayFavorites = getDisplayFavorites();
+    const chosenYear = getChosenYear();
     // if chosenUser = null, display all posts
     // if chosenUser = x, display posts from x
     if (chosenUser) {
@@ -33,6 +35,9 @@ export const PostList = () => {
     if (displayFavorites) {
         const userLiked = likes.filter((like) => like.userId === currentUser.id);
         posts = posts.filter((post) => userLiked.find((like) => like.postId === post.id));
+    }
+    if (chosenYear) {
+        posts = posts.filter((post) => new Date(post.timestamp).getFullYear() === chosenYear);
     }
 
     return `<ul class="postList"><li><button id="postBtn" class="postListItem postBtn">Create Post</button></li>${posts

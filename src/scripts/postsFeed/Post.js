@@ -8,8 +8,8 @@ import {
 	fetchLikes,
 	deletePost,
 	setChosenUser,
-	setDisplayProfileProfile,
-	setDisplayProfileUser
+	setPostsFeedStateProfile,
+	setPostsFeedStateUser
 } from "../dataAccess.js";
 //function returns post so that it can appear in post list
 export const Post = (post) => {
@@ -118,14 +118,14 @@ mainContainer.addEventListener("click", (clickEvent) => {
 		//fork in road where if it the selected post was written by current user, we show userProfile. Otherwise we show Profile()
 		if (postAuthorId === currentUser.id) {
 			//set displayProfile to userProfile
-			setDisplayProfileUser();
+			setPostsFeedStateUser();
 			//shoot out postFeedCahnge event
 			mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
 		} else {
 			//set post author as chosenUser
 			setChosenUser(postAuthorId);
 			//set displayProfile to Profile
-			setDisplayProfileProfile();
+			setPostsFeedStateProfile();
 			//shoot out postFeedChanged event
 			mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
 		}

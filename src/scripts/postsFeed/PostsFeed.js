@@ -1,10 +1,10 @@
 import { PostList } from "./PostList.js";
 import { Profile } from "./Profile.js";
 import { UserProfile } from "./UserProfile.js";
-import { getDisplayProfile, fetchPosts } from "../dataAccess.js";
+import { getPostsFeedState, fetchPosts } from "../dataAccess.js";
 
 export const PostsFeed = () => {
-    switch (getDisplayProfile()) {
+    switch (getPostsFeedState()) {
         case "postList":
             return PostList();
             break;

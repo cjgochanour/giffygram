@@ -4,7 +4,7 @@ import {
 	getPosts,
 	getMessages,
 	getCurrentUser,
-	setDisplayProfilePosts,
+	setPostsFeedStatePosts,
   setChosenUser
 } from "../dataAccess.js";
 import { Message } from "../messages/Message.js";
@@ -54,7 +54,7 @@ const mainContainer = document.querySelector(".beta");
 //listener for x button
 mainContainer.addEventListener("click", (clickEvent) => {
 	if (clickEvent.target.id === "profileCloseBtn") { 
-    setDisplayProfilePosts();
+    setPostsFeedStatePosts();
     setChosenUser(null);
     mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
 	}

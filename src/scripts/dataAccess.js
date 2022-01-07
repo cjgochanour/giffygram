@@ -16,7 +16,7 @@ const applicationState = {
         displayNavBar: true,
         displayMessageCreate: false,
         displayPostCreate: false,
-        displayProfile: "postList"
+        postsFeedState: "postList"
     },
 };
 
@@ -92,8 +92,8 @@ export const getDisplayPostCreate = () => {
     return applicationState.feed.displayPostCreate;
 };
 
-export const getDisplayProfile = () => {
-    return applicationState.feed.displayProfile;
+export const getPostsFeedState = () => {
+    return applicationState.feed.postsFeedState;
 }
 
 //Set functions that allow us to set the currentUser and feed properties in applicationState
@@ -146,16 +146,16 @@ export const setDisplayPostCreateTrue = () => {
     applicationState.feed.displayPostCreate = true;
 };
 
-export const setDisplayProfilePosts = () => {
-    applicationState.feed.displayProfile = "postList";
+export const setPostsFeedStatePosts = () => {
+    applicationState.feed.postsFeedState = "postList";
 }
 
-export const setDisplayProfileProfile = () => {
-    applicationState.feed.displayProfile = "profile";
+export const setPostsFeedStateProfile = () => {
+    applicationState.feed.postsFeedState = "profile";
 }
 
-export const setDisplayProfileUser = () => {
-    applicationState.feed.displayProfile = "userProfile";
+export const setPostsFeedStateUser = () => {
+    applicationState.feed.postsFeedState = "userProfile";
 }
 
 //POST functions to add to the database

@@ -1,5 +1,7 @@
-import { getCurrentUser, getUsers, setChosenUser } from "../dataAccess.js";
+import { getCurrentUser, getDisplayMessages, getUsers, setChosenUser, setDisplayMessageCreateTrue, setDisplayMessagesTrue, getDisplayMessageCreate, getDisplayPostCreate, setDisplayPostCreateTrue } from "../dataAccess.js";
 import { Notification } from "./Notification.js";
+import { msgOpen } from "../messages/MessageSideBar.js";
+import { msgWriteOpen } from "../messages/MessageCreate.js";
 
 export const Navbar = () => {
     const currentUser = getCurrentUser();
@@ -9,12 +11,12 @@ export const Navbar = () => {
     return `
         <img class="navbarItem navColBtn" id="navColBtn" src="images/betaLogo.png" alt="AltText" width="50px" />
         <section class="navbarCollapse navbarItem">
-            <div id="homeBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Home</div>
-            <div id="userBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />${
+            <div id="homeBtn" class="navcolItem" id="navHomeBtn"><img src="images/betaLogo.png" alt="AltText" width="50px" />Home</div>
+            <div id="userBtn" class="navcolItem" id="navUserBtn"><img src="images/betaLogo.png" alt="AltText" width="50px" />${
                 currentUser.firstName
             } ${currentUser.lastName}</div>
             <div id="notification" class="navcolItem notification notificationBtn">${Notification()}</div>
-            <div id="writeMessageBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Compose Message</div>
+            <div id="writeMessageBtn" class="navcolItem" id="writeMsgBtn"><img src="images/betaLogo.png" alt="AltText" width="50px" />Compose Message</div>
             <div id="postGifBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Post Gif</div>
             <div id="filterLikeBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Filter By Likes</div>
             <select id="filterDropDown" class="navcolItem">
@@ -69,9 +71,53 @@ mainContainer.addEventListener("click", (clickEvent) => {
     }
 });
 
+//filter drop down change event
 mainContainer.addEventListener("change", (event) => {
     if (event.target.id === "filterDropDown") {
         setChosenUser(parseInt(event.target.value));
         mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
     }
 });
+
+//clicking the home button rerenders the main page with post list being rendered.
+mainContainer.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "navHomeBtn") {
+        setPostsFeedPostStatePosts();
+        mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
+    }
+})
+
+//clicking the user name rerenders postsFeed with userProfile
+mainContainer.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "navUserBtn") {
+        setPostsFeedPostStateUser();
+        mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
+    }
+})
+
+//clicking compose message will open up messages side bar and messageCreate
+mainContainer.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "writeMsgBtn") {
+        //open up messageSideBar if it is closed
+        if (!getDisplayMessages()) {
+            msgOpen();
+            setDisplayMessagesTrue();
+        }
+
+        //open up the messageCreate form if it is closed
+        if (!getDisplayMessageCreate()) {
+            msgWriteOpen();
+            setDisplayMessageCreateTrue();
+        }
+    }
+})
+
+//clicking post gif will pull up the postcreate form
+mainContainer.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "postGifBtn") {
+        if (!getDisplayPostCreate()) {
+            document.querySelector(".postCreate").style.visibility = "visible";
+            setDisplayPostCreateTrue();
+        }
+    }
+})

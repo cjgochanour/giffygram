@@ -37,7 +37,7 @@ const postInnerHtml = (post) => {
     }" width="20px" />
     ${
         post.authorId === currentUser.id
-            ? `<img class="postItem postDelBtn" id="delBtn--${post.id}" src="../../images/betaLogo.png" width="40px" />`
+            ? `<img class="postItem postDelBtn" id="delBtn--${post.id}" src="./images/block.svg" width="20px" />`
             : ""
     }`;
 };
@@ -91,7 +91,6 @@ mainContainer.addEventListener("click", (clickEvent) => {
 //delete post button listener
 mainContainer.addEventListener("click", (event) => {
     if (event.target.id.startsWith("delBtn")) {
-        //grab postId
         const [, postId] = event.target.id.split("--");
         deletePost(parseInt(postId)).then(() => mainContainer.dispatchEvent(new CustomEvent("postListChanged")));
     }

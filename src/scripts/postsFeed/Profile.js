@@ -35,7 +35,7 @@ const Profile = () => {
 
   return `
   <section class="profileInfo">
-    <img id="closeBtn" class="closeBtn" src="images/closeX.png" alt="close profile" width="30px">
+    <img id="closeBtn" class="closeBtn" src="images/closeX.png" alt="close profile" width="30px"/>
       <h2 class= "profileName> ${chosenUser.firstName} ${chosenUser.lastName} </h2>
         <div class="profilePostCount"> Post count: ${userPosts.length} </div>
   </section>

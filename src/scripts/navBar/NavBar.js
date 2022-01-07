@@ -1,4 +1,10 @@
-import { getCurrentUser, getUsers, setChosenUser } from "../dataAccess.js";
+import {
+    getCurrentUser,
+    getUsers,
+    setChosenUser,
+    setDisplayFavoritesTrue,
+    setDisplayFavoritesFalse,
+} from "../dataAccess.js";
 import { Notification } from "./Notification.js";
 
 export const Navbar = () => {
@@ -25,12 +31,11 @@ export const Navbar = () => {
                         })
                         .join("")}
             </select>
+            <input type="checkbox" class="navcolItem" id="favFilter">Filter By Favorite</select>
             <div id="logoutBtn" class="navcolItem"><img id="logoutImg" src="images/betaLogo.png" alt="AltText" width="50px" />Log Out</div>
         </section>
     `;
 };
-
-
 
 //grab items from dom
 const mainContainer = document.querySelector(".beta");
@@ -69,9 +74,23 @@ mainContainer.addEventListener("click", (clickEvent) => {
     }
 });
 
+//filter by user
 mainContainer.addEventListener("change", (event) => {
     if (event.target.id === "filterDropDown") {
         setChosenUser(parseInt(event.target.value));
         mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
+    }
+});
+
+//filter by favorite button
+mainContainer.addEventListener("change", (event) => {
+    if (event.target.id === "favFilter") {
+        if (event.target.checked) {
+            setDisplayFavoritesTrue();
+            mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
+        } else {
+            setDisplayFavoritesFalse();
+            mainContainer.dispatchEvent(new CustomEvent("postListChanged"));
+        }
     }
 });

@@ -5,7 +5,6 @@ import {
     getDisplayFavorites,
     getLikes,
     setDisplayPostCreateTrue,
-    setChosenYear,
     getChosenYear,
 } from "../dataAccess.js";
 import { Post } from "./Post.js";
@@ -45,7 +44,3 @@ export const PostList = () => {
         .map((post) => Post(post))
         .join("")}</ul>`;
 };
-
-// make new array with only the years of posts
-// use this array to generate html for the drop down selector
-// use

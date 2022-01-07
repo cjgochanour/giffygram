@@ -15,7 +15,6 @@ import {
     setPostsFeedStatePosts,
     setDisplayFavoritesTrue,
     setDisplayFavoritesFalse,
-    getChosenYear,
     setChosenYear,
 } from "../dataAccess.js";
 import { Notification } from "./Notification.js";

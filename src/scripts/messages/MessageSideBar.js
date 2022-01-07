@@ -29,10 +29,10 @@ export const msgOpen = () => {
 }
 
 export const msgClose = () => {
-    //rerender message list so now all the read message do not get marked as read. will ALSO update with any new messages that have been recieved.
-    mainContainer.dispatchEvent(new CustomEvent("msgListChanged"));
     document.querySelector(".msgSidebar").style.width = "0";
     document.querySelector(".postFeed").style.marginRight = "0";
+    //rerender message list so now all the read message do not get marked as read. will ALSO update with any new messages that have been recieved.
+    mainContainer.dispatchEvent(new CustomEvent("msgListChanged"));
 }
 
 //collapse variable

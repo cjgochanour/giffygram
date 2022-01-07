@@ -69,12 +69,14 @@ mainContainer.addEventListener("click", (event) => {
 
 //collaspe functions
 export const msgWriteOpen = () => {
-	document.querySelector(".msgCreate").style.maxHeight = "14vh";
-	document.querySelector(".msgList").style.marginTop = "13vh";
+	document.querySelector(".msgCreate").style.height = "150px";
+	document.querySelector(".msgCreate").style.overflowY = "auto";
+	document.querySelector(".msgList").style.marginTop = "150px";
 };
 
 export const msgWriteClose = () => {
 	document.querySelector(".msgCreate").style.maxHeight = "0";
+	document.querySelector(".msgCreate").style.overflowY = "hidden";
 	document.querySelector(".msgList").style.marginTop = "0";
 };
 

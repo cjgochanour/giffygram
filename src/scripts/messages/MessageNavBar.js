@@ -1,5 +1,6 @@
-import { msgClose, msgOpen, getMsgCol, setMsgColFalse, setMsgColTrue } from "./MessageSideBar.js";
-import { msgWriteClose, msgWriteOpen, getMsgWriteCol, setMsgWriteColFalse, setMsgWriteColTrue} from "./MessageCreate.js";
+import { msgClose, msgOpen } from "./MessageSideBar.js";
+import { msgWriteClose, msgWriteOpen} from "./MessageCreate.js";
+import { getDisplayMessageCreate, setDisplayMessageCreateTrue, setDisplayMessageCreateFalse, getDisplayMessages, setDisplayMessagesTrue, setDisplayMessagesFalse } from "../dataAccess.js";
 
 export const MessageNavbar = () => {
     return `
@@ -12,12 +13,12 @@ const mainContainer = document.querySelector(".beta");
 //event listener for x button image
 mainContainer.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "closeMsgSidebar") {
-        if (getMsgCol()) {
-            msgOpen();
-            setMsgColFalse();
-        } else {
+        if (getDisplayMessages()) {
             msgClose();
-            setMsgColTrue();
+            setDisplayMessagesFalse();
+        } else {
+            msgOpen();
+            setDisplayMessagesTrue();
         }
     }
 })
@@ -25,12 +26,12 @@ mainContainer.addEventListener("click", clickEvent => {
 //listener for the compose message image
 mainContainer.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "composeMsgSidebar") {
-        if (getMsgWriteCol()) {
-            msgWriteOpen();
-            setMsgWriteColFalse();
-        } else {
+        if (getDisplayMessageCreate()) {
             msgWriteClose();
-            setMsgWriteColTrue();
+            setDisplayMessageCreateFalse();
+        } else {
+            msgWriteOpen();
+            setDisplayMessageCreateTrue();
         }
     }
 })

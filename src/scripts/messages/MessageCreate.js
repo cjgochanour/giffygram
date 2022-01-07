@@ -1,4 +1,4 @@
-import { getUsers, sendMessage, getCurrentUser } from "../dataAccess.js";
+import { getUsers, sendMessage, getCurrentUser, setDisplayMessageCreateFalse } from "../dataAccess.js";
 
 const mainContainer = document.querySelector(".beta");
 
@@ -61,7 +61,7 @@ mainContainer.addEventListener("click", (event) => {
 		sendMessage(dataToSendToAPI).then(() => {
 			window.alert("Message Successfuly Sent");
 			msgWriteClose();
-			setMsgWriteColTrue();
+			setDisplayMessageCreateFalse();
 			mainContainer.dispatchEvent(new CustomEvent("msgListChanged"));
 		});
 	}
@@ -78,17 +78,3 @@ export const msgWriteClose = () => {
 	document.querySelector(".msgList").style.marginTop = "0";
 };
 
-//collapse variable
-let msgWriteCollapsed = true;
-
-export const getMsgWriteCol = () => {
-	return msgWriteCollapsed;
-};
-
-export const setMsgWriteColTrue = () => {
-	msgWriteCollapsed = true;
-};
-
-export const setMsgWriteColFalse = () => {
-	msgWriteCollapsed = false;
-};

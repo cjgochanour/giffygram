@@ -1,5 +1,5 @@
-import { getCurrentUser, getMessages } from "../dataAccess.js";
-import { msgClose, msgOpen, getMsgCol, setMsgColFalse, setMsgColTrue } from "../messages/MessageSideBar.js";
+import { getCurrentUser, getMessages, getDisplayMessages, setDisplayMessagesFalse, setDisplayMessagesTrue } from "../dataAccess.js";
+import { msgClose, msgOpen } from "../messages/MessageSideBar.js";
 
 //function for rendering notification button
 export const Notification = () => {
@@ -22,12 +22,12 @@ const mainContainer = document.querySelector(".beta");
 //open messages window button event listener
 mainContainer.addEventListener("click", (clickEvent) => {
     if (clickEvent.target.classList.contains("notificationBtn")) {
-        if (getMsgCol()) {
-            msgOpen();
-            setMsgColFalse();
-        } else {
+        if (getDisplayMessages()) {
             msgClose();
-            setMsgColTrue();
+            setDisplayMessagesFalse();
+        } else {
+            msgOpen();
+            setDisplayMessagesTrue();
         }
     }
 });

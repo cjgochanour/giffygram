@@ -2,6 +2,7 @@
 @import "./messages/MessageSideBar.css";
 @import "./footer/Footer.css";
 @import "./postsFeed/PostList.css";
+@import "./postsFeed/Profile.css";
 @import "./postsFeed/PostCreate.css";
 @import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
 
@@ -12,7 +13,7 @@
 }
 
 body, button, input, select, textarea {
-    color: #404040;
+    color: black;
     font-family: "Comfortaa", Arial, sans-serif;
     font-size: 1rem;
     line-height: 1.5;

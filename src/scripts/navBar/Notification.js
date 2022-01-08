@@ -8,11 +8,11 @@ export const Notification = () => {
     const userMessages = allMessages.filter((msg) => msg.recipientId === currentUser.id);
     const userMessagesUnread = userMessages.filter((msg) => !msg.read);
 
-    return `<img id="notifImg" class="notificationBtn notifImg" src="${
-        userMessagesUnread.length > 0 ? "images/notification-bell-filled.png" : "images/notification-bell-empty.png"
+    return `<img id="notifImg" class="navBtn notificationBtn notifImg" src="${
+        userMessagesUnread.length > 0 ? "images/Icons/notification-bell-filled.png" : "images/Icons/notification-bell-empty.png"
     }" alt="AltText" width="30px" />${
         userMessagesUnread.length > 0
-            ? `<div class="notificationBtn notifNumberContainer"><span class="notifNumber">${userMessagesUnread.length}</span></div>`
+            ? `<div class="notificationBtn navBtn notifNumberContainer"><span class="notifNumber">${userMessagesUnread.length}</span></div>`
             : ""
     }`;
 };

@@ -9,10 +9,12 @@ export const Message = (msg) => {
         <li class="msgListItem msg">
             <h4 class="msgItem msgAuthor">From: ${author.firstName} ${author.lastName}</h4>
             <div class="msgItem msgText">${msg.message}</div>
-            <div class="msgItem msgTimestamp">${new Date(msg.timestamp).toLocaleString("en-US")}</div>
-            <div class="msgReadImg">
-            ${(msg.read) ? "" : `<img class="msgItem msgMarkRead" id="msgRead--${msg.id}" src="./images/unread-message.png" alt="Mark As Read" width="20px"/>"`}
-            </div
+            <div class="msgItem msgBottomBar">
+                <div class="msgItem msgTimestamp">${new Date(msg.timestamp).toLocaleString("en-US")}</div>
+                <div class="msgReadImg">
+                ${(msg.read) ? "" : `<img class="msgItem msgMarkRead" id="msgRead--${msg.id}" src="./images/unread-message.png" alt="Mark As Read" width="20px"/>`}
+                </div>
+            </div>
         </li>`
 } 
 

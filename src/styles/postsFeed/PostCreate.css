@@ -16,9 +16,9 @@
     background-color: rgb(0, 103, 229);
     width: 16%;
     height: 16%;
-    padding: 6%;
-    margin-top: -14%;
-    margin-left: -14%;
+    padding: 8%;
+    margin-top: -16%;
+    margin-left: -16%;
     border-radius: 5%;
 }
 
@@ -31,4 +31,12 @@ flex-flow: column nowrap;
     position: absolute;
     top: 3%;
     right: 3%;
+    width: 30px;
+    padding: 15px;
+    border-radius: 50%; 
+}
+
+.postCreateCloseBtn:hover {
+    background-color: rgb(2, 69, 151);
+    cursor: pointer;
 }

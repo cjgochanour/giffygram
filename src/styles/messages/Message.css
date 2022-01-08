@@ -1,3 +1,31 @@
 .msg {
-    border: solid green 2px;
+    background-color: whitesmoke;
+    margin: 2px 10px;
+    border: solid 3px #192428;
+    border-radius: 10px;
+    padding: 3px 1rem;
+}
+
+.msg:first-child {
+    margin-top: 26px;
+}
+
+.msgBottomBar {
+    display: flex;
+    flex-flow: row, nowrap;
+    justify-content: space-between;
+}
+
+.msgAuthor {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.msgText {
+    white-space: pre-line;
+}
+
+.msgTimestamp {
+    font-style: italic;
+    font-size: 0.75rem;
 }

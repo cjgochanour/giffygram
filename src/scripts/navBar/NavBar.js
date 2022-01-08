@@ -8,18 +8,18 @@ import {
     getDisplayMessageCreate,
     getDisplayPostCreate,
     setDisplayPostCreateTrue,
-    getDisplayNavBar,
-    setDisplayNavBarTrue,
-    setDisplayNavBarFalse,
     setPostsFeedStateUser,
     setPostsFeedStatePosts,
     setDisplayFavoritesTrue,
     setDisplayFavoritesFalse,
     setChosenYear,
+    setDisplayMessagesFalse,
+    setDisplayMessageCreateFalse
 } from "../dataAccess.js";
 import { Notification } from "./Notification.js";
-import { msgOpen } from "../messages/MessageSideBar.js";
-import { msgWriteOpen } from "../messages/MessageCreate.js";
+import { msgOpen, msgClose } from "../messages/MessageSideBar.js";
+import { msgWriteOpen, msgWriteClose } from "../messages/MessageCreate.js";
+import { MenuButton } from "./MenuButton.js";
 
 export const Navbar = () => {
     const currentUser = getCurrentUser();
@@ -32,16 +32,17 @@ export const Navbar = () => {
 
     // we'll add specific images later
     return `
-        <img class="navbarItem navColBtn" id="navColBtn" src="images/betaLogo.png" alt="AltText" width="50px" />
+        <div class="menuButton navBtn">
+        ${MenuButton()}
+        </div>
         <section class="navbarCollapse navbarItem">
-            <div id="homeBtn" class="navcolItem navHomeBtn"><img class="navHomeBtn" src="images/betaLogo.png" alt="AltText" width="50px" />Home</div>
-            <div id="userBtn" class="navcolItem navUserBtn"><img class="navUserBtn" src="images/betaLogo.png" alt="AltText" width="50px" />${
+            <div id="homeBtn" class="navcolItem navHomeBtn navBtn"><img class="navHomeBtn navBtn" src="images/Icons/home-icon.png" alt="AltText" width="50px" />Home</div>
+            <div id="userBtn" class="navcolItem navUserBtn navBtn"><img class="navUserBtn navBtn" src="images/betaLogo.png" alt="AltText" width="50px" />${
                 currentUser.firstName
             } ${currentUser.lastName}</div>
-            <div id="notification" class="navcolItem notification notificationBtn">${Notification()}</div>
-            <div id="writeMessageBtn" class="navcolItem writeMsgBtn"><img class="writeMsgBtn" src="images/betaLogo.png" alt="AltText" width="50px" />Compose Message</div>
-            <div id="postGifBtn" class="navcolItem postGifBtn"><img class="postGifBtn" src="images/betaLogo.png" alt="AltText" width="50px" />Post Gif</div>
-            <div id="filterLikeBtn" class="navcolItem"><img src="images/betaLogo.png" alt="AltText" width="50px" />Filter By Likes</div>
+            <div id="notification" class="navcolItem navBtn notification notificationBtn">${Notification()}</div>
+            <div id="writeMessageBtn" class="navcolItem navBtn writeMsgBtn"><img class="navBtn writeMsgBtn" src="images/Icons/write-message.png" alt="AltText" width="50px" />Compose Message</div>
+            <div id="postGifBtn" class="navcolItem navBtn postGifBtn"><img class="postGifBtn navBtn" src="images/Icons/post-gif.png" alt="AltText" width="50px" />Post Gif</div>
             <select id="filterDropDown" class="navcolItem dropDown">
                     <option value="0">Show All Posts</option>
                     ${users
@@ -55,36 +56,13 @@ export const Navbar = () => {
                 ${yearHTML}
             </select>
             <input type="checkbox" class="navcolItem" id="favFilter">Filter By Favorite</select>
-            <div id="logoutBtn" class="navcolItem"><img id="logoutImg" src="images/betaLogo.png" alt="AltText" width="50px" />Log Out</div>
+            <div id="logoutBtn" class="navBtn navcolItem logoutBtn"><img id="logoutImg" class="navBtn logoutBtn" src="images/Icons/logout.png" alt="AltText" width="50px" />Log Out</div>
         </section>
     `;
 };
 
 //grab items from dom
 const mainContainer = document.querySelector(".beta");
-
-//collapse functions
-export const navOpen = () => {
-    document.querySelector(".navbarCollapse").style.width = "175px";
-    document.querySelector(".postFeed").style.marginLeft = "175px";
-};
-
-export const navClose = () => {
-    document.querySelector(".navbarCollapse").style.width = "0";
-    document.querySelector(".postFeed").style.marginLeft = "0";
-};
-
-mainContainer.addEventListener("click", (clickEvent) => {
-    if (clickEvent.target.id === "navColBtn") {
-        if (getDisplayNavBar()) {
-            navClose();
-            setDisplayNavBarFalse();
-        } else {
-            navOpen();
-            setDisplayNavBarTrue();
-        }
-    }
-});
 
 //sends user to login page when logout button is clicked
 mainContainer.addEventListener("click", (clickEvent) => {
@@ -122,13 +100,19 @@ mainContainer.addEventListener("click", (clickEvent) => {
 mainContainer.addEventListener("click", (clickEvent) => {
     if (clickEvent.target.classList.contains("writeMsgBtn")) {
         //open up messageSideBar if it is closed
-        if (!getDisplayMessages()) {
+        if (getDisplayMessages()) {
+            msgClose();
+            setDisplayMessagesFalse();
+        } else {
             msgOpen();
             setDisplayMessagesTrue();
         }
 
         //open up the messageCreate form if it is closed
-        if (!getDisplayMessageCreate()) {
+        if (getDisplayMessageCreate()) {
+            msgWriteClose();
+            setDisplayMessageCreateFalse();
+        } else {
             msgWriteOpen();
             setDisplayMessageCreateTrue();
         }

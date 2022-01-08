@@ -39,7 +39,7 @@ mainContainer.addEventListener("click", (event) => {
 export const PostCreate = () => {
     return `
         <div class="postCreateBox">
-            <img id="postCreateCloseBtn" class="postCreateCloseBtn" src="images/closeX.png" alt="close post creation" width="30px">
+            <img id="postCreateCloseBtn" class="postCreateCloseBtn" src="images/closeX.png" alt="close post creation" />
             <div class="postCreateFlex">
                 <input type="text" name="gifURL" id="postUrlInput" placeholder="URL:" />
                 <input type="text" name="postTitle" id="postTitle" placeholder="Title:">

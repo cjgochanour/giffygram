@@ -7,12 +7,14 @@ export const UserProfile = () => {
     const curUserPosts = posts.filter(post => post.authorId === currentUser.id);
 
     return `
-        <section class="userProfileInfo">
+    <section class="userProfile">
+        <div class="profileInfo">
             <img id="profileCloseBtn" class="closeBtn" src="images/closeX.png" alt="close profile" width="30px" />
             <h2 class= "profileName">${currentUser.firstName} ${currentUser.lastName}</h2>
             <div class="profilePostCount">Post count: ${curUserPosts.length}</div>
-        </section>
+        </div>
         <ul class="userPostsList">
             ${curUserPosts.map(post => Post(post)).join("")}
-        </ul>`
+        </ul>
+    </section>`
 }

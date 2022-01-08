@@ -8,8 +8,6 @@ export const MessageForm = () => {
 
 	let html = `  
     <div class="messageForm">      
-        <form>
-            <fieldset>
                 <select id="msgRecList" class="messageFormItem recipientList">
                     <option value = "0">Choose Recipient</option>
                         ${users
@@ -24,12 +22,7 @@ export const MessageForm = () => {
 							})
 							.join("")}
                 </select>
-            </fieldset>
-            <fieldset>
-                <label class="messageFormItem msgTextLabel" for="messageCreate">Message</label>
-                    <textarea type="text" name="messageCreate"></textarea>
-            </fieldset>
-        </form>
+                <textarea type="text" class="messageTextArea" name="messageCreate" placeholder="Write Message Here"></textarea>
             <button class="sendMessageBtn messageFormItem" id="sendMessage">Send</button>
     </div>`;
 	return html;

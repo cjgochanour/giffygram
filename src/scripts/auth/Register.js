@@ -5,28 +5,23 @@ const mainContainer = document.querySelector(".beta");
 
 export const Register = () => {
   return `
+      <section class="registerPage">
+        <img class="betaLogo" src="images/betaLogo.png" />
         <div class="registerForm">
-            <form>
-            <fieldset>
                 <label form="firstName">First Name:</label>
                 <input type="text" name="firstName" autofocus placeholder="First Name" />
-            </fieldset>
-            <fieldset>
                 <label form="lastName">Last Name:</label>
                 <input type="text" name="lastName" placeholder="Last Name" />
-            </fieldset>
-                <fieldset>
                     <label for="email">Email:</label>
                     <input type="text" name="email" placeholder="Email address" />
-                </fieldset>
-                <fieldset>
                     <label for="password">Password:</label>
                     <input type="password" name="password" placeholder="Password" />
-                </fieldset>
-            </form>
-        <button id="returnToLoginButton">Return to Login</button>
-        <button id="registerButton">Register</button>
-        </div>`;
+          <div class="registerFormButtons">
+            <button id="returnToLoginButton">Return to Login</button>
+            <button id="registerButton">Register</button>
+          </div>
+        </div>
+      </section>`;
 };
 
 mainContainer.addEventListener("click", (clickEvent) => {
@@ -46,6 +41,8 @@ mainContainer.addEventListener("click", (clickEvent) => {
 
     if (users.find((user) => user.email === newEmail)) {
       window.alert("This email is already in use");
+    } else if (!newFirstName || !newLastName || !newEmail || !newPassword) {
+      window.alert("Please fill out all required fields")
     } else {
       setAuthStateLogin()
       sendUser(dataToSendToAPI).then(() =>

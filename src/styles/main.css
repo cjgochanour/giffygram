@@ -4,6 +4,7 @@
 @import "./postsFeed/PostList.css";
 @import "./postsFeed/Profile.css";
 @import "./postsFeed/PostCreate.css";
+@import "./auth/Authorize.css";
 @import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
 
 /*Typography
@@ -36,15 +37,14 @@ ul {
     list-style: none;
 }
 
-.loginForm {
-    margin: 0 25%;
-}
-
 #logo {
     cursor: pointer;
 }
 
 .mainPage {
     display: flex;
+}
+
+.beta {
     background-color: #192428;
 }

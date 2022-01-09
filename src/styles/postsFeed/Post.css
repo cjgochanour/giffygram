@@ -50,3 +50,7 @@
 .postImgBtn {
     width: 50px;
 }
+
+.postBottomBar .postImgBtn:hover {
+    cursor: pointer;
+}

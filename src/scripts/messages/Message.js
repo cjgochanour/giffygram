@@ -1,13 +1,14 @@
-import { getUsers, updateMessage, getMessages } from "../dataAccess.js";
+import { getUsers, updateMessage, getMessages, getCurrentUser } from "../dataAccess.js";
 
 //function that returns the html for a message to appear in the message list
 export const Message = (msg) => {
+    const currentUser = getCurrentUser();
     const users = getUsers();
     const author = users.find(user => user.id === msg.authorId)
 
     return `
-        <li class="msgListItem msg">
-            <h4 class="msgItem msgAuthor">From: ${author.firstName} ${author.lastName}</h4>
+        <li class="msgListItem msg ${(currentUser.id === msg.recipientId) ? "recievedMsg" : "sentMsg"}">
+            <h4 class="msgItem msgAuthor">${(currentUser.id === msg.authorId) ? "Sent by You" : `From: ${author.firstName} ${author.lastName}`}</h4>
             <div class="msgItem msgText">${msg.message}</div>
             <div class="msgItem msgBottomBar">
                 <div class="msgItem msgTimestamp">${new Date(msg.timestamp).toLocaleString("en-US")}</div>

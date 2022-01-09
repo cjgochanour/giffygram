@@ -35,10 +35,12 @@
 .msgNavbarItem {
     padding: 10px;
     border-radius: 50%;
+    height: 40px;
 }
 
 .msgNavbarItem img {
     width: 40px;
+    height: 40px;
 }
 
 .msgNavbarItem:hover {

@@ -1,10 +1,101 @@
-.profileInfo {
+/* profile card css */
+
+.profileCard {
+    position: sticky;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
     margin: 25px auto;
-    padding: 0 10vw;
+    padding: 5vh 10vw;
     background-color: whitesmoke;
-    border-radius: 5vw;    
+    border-radius: 5vw;
+}
+
+.profileCloseBtn {
+    position: absolute;
+    top: 3%;
+    right: 10%;
+    width: 30px;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.profileCloseBtn:hover {
+    background-color: rgb(2, 69, 151);
+    cursor: pointer;
+}
+
+.profileCardImg {
+    width: 10vw;
+    height: 10vw;
+    margin-right: 3vw;
+}
+
+.profileInfo {
+    margin-left: 3vw;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+}
+
+.profilePostCount {
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.profileBio {
+    font-size: 1.25rem;
+}
+
+/* Editing IMG and Bio css */
+
+.editImgBtn, .editBioBtn {
+    display: inline;
+    padding: 10px 10px;
+    margin-left: -10px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.editImgBtn:hover, .editBioBtn:hover {
+    cursor: pointer;
+    background-color: rgba(0, 103, 229, 0.685);
+}
+
+.changeGifLink, .changeBio {
+    display: flex;
+    flex-flow: column nowrap;
+}
+.changeGifLink label, .changeBio label {
+    text-align: center;
+}
+
+.editImgBtnItem, .bioBtnItem {
+    margin: 5px 0;
+}
+
+.gifLinkBtnContainer, .editBioBtnContainer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.gifLinkBtn, .bioBtn {
+    color: #192428;
+    background-color: rgb(0, 103, 229);
+    font-size: 1rem;
+    padding: 0.25rem;
+    border-radius: 1rem;
+}
+
+.gifLinkBtn:hover, .bioBtn:hover {
+    background-color: rgb(0, 87, 194);
+    cursor: pointer;
+}
+
+.editBioTextarea {
+    height: 100px;
+    text-align: left;
 }
 
 /* profile specific css */

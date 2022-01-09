@@ -37,10 +37,16 @@ export const Profile = () => {
 
 	return `
 	<section class="profile">
-		<div class="profileInfo">
+		<div class="profileCard">
 			<img id="profileCloseBtn" class="profileCloseBtn" src="images/closeX.png" alt="close profile" width="30px" />
-			<h2 class= "profileName">${chosenUser.firstName} ${chosenUser.lastName}</h2>
-			<div class="profilePostCount">Post count: ${userPosts.length}</div>
+			<img class="profileCardImg" src="${chosenUser.gifLink}" />
+			<div class="profileInfo">
+				<div class="profNamePstCount">
+					<h2 class= "profileName">${chosenUser.firstName} ${chosenUser.lastName}</h2>
+					<div class="profilePostCount">Post count: ${userPosts.length}</div>
+				</div>
+				<div class="profileBio">Bio: ${chosenUser.bio}</div>
+			</div>
 		</div>
 		<ul class="sortedMsgList profileMsgList">
 				${allMsgs.map((msg) => Message(msg)).join("")}

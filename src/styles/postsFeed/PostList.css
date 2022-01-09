@@ -3,6 +3,7 @@
 .postFeed {
     transition: margin-left .5s, margin-right .5s; /* If you want a transition effect */
     width: 100vw;
+    min-height: 100vh;
 }
 
 .postList {
@@ -28,5 +29,6 @@
 }
 
 #postBtn:hover {
-    background-color: rgb(0, 87, 194)
+    background-color: rgb(0, 87, 194);
+    cursor: pointer;
 }

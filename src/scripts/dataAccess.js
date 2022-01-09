@@ -244,3 +244,15 @@ export const updateMessage = (messageUpdateObject) => {
 
     return fetch(`${API}/messages/${messageUpdateObject.id}`, fetchOptions);
 };
+
+export const updateUser = (userUpdateObject) => {
+    const fetchOptions = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userUpdateObject),
+    };
+
+    return fetch(`${API}/users/${userUpdateObject.id}`, fetchOptions);
+};

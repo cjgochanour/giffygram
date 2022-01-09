@@ -3,6 +3,7 @@ import {
     getDisplayMessages,
     getUsers,
     setChosenUser,
+    getChosenUser,
     setDisplayMessageCreateTrue,
     setDisplayMessagesTrue,
     getDisplayMessageCreate,
@@ -14,7 +15,9 @@ import {
     setDisplayFavoritesFalse,
     setChosenYear,
     setDisplayMessagesFalse,
-    setDisplayMessageCreateFalse
+    setDisplayMessageCreateFalse,
+    setDisplayNavBarFalse,
+    setDisplayPostCreateFalse,
 } from "../dataAccess.js";
 import { Notification } from "./Notification.js";
 import { msgOpen, msgClose } from "../messages/MessageSideBar.js";
@@ -25,6 +28,7 @@ export const Navbar = () => {
     const currentUser = getCurrentUser();
     const users = getUsers();
     const currentYear = new Date().getFullYear();
+    const chosenUser = getChosenUser();
     let yearHTML = "";
     for (let x = currentYear; x >= 2021; x--) {
         yearHTML += `<option value="${x}">${x}</option>`;
@@ -43,12 +47,9 @@ export const Navbar = () => {
                 <h6 class="navBtn navHomeBtn">Home</h6>
             </div>
             <div id="userBtn" class="navcolItem navUserBtn navBtn">
-                <div class="navBtnCircle navUserBtn">
-                    <img class="navUserBtn navBtn" src="images/betaLogo.png" alt="AltText" />
-                </div>
-                <h6 class="navBtn navUserBtn">${currentUser.firstName} ${currentUser.lastName}</h6>
+                ${UserButton()}
             </div>
-            <div id="notification" class="navcolItem navBtn notification notificationBtn">
+            <div id="notification" class="navcolItem navBtn navColBtn notification notificationBtn">
                 ${Notification()}
             </div>
             <div id="writeMessageBtn" class="navcolItem navBtn writeMsgBtn">
@@ -73,7 +74,7 @@ export const Navbar = () => {
                             <option value="0">Show All Posts</option>
                             ${users
                                 .map((user) => {
-                                    return `<option value="${user.id}">${user.firstName} ${user.lastName}</option>`;
+                                    return `<option value="${user.id}" ${(chosenUser === user.id) ? "selected=selected" : ""}>${user.firstName} ${user.lastName}</option>`;
                                 })
                                 .join("")}
                     </select>
@@ -104,6 +105,12 @@ const mainContainer = document.querySelector(".beta");
 mainContainer.addEventListener("click", (clickEvent) => {
     if (clickEvent.target.classList.contains("logoutBtn")) {
         localStorage.removeItem("beta_user");
+        //these functions will reset our dataAccess back to its initial state
+        setDisplayNavBarFalse();
+        setDisplayMessagesFalse();
+        setDisplayMessageCreateFalse();
+        setDisplayPostCreateFalse();
+        setPostsFeedStatePosts();
         mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
     }
 });
@@ -120,6 +127,7 @@ mainContainer.addEventListener("change", (event) => {
 mainContainer.addEventListener("click", (clickEvent) => {
     if (clickEvent.target.classList.contains("navHomeBtn")) {
         setPostsFeedStatePosts();
+        setChosenUser(null);
         mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
     }
 });
@@ -185,3 +193,17 @@ mainContainer.addEventListener("change", (event) => {
         mainContainer.dispatchEvent(new CustomEvent("postFeedChanged"));
     }
 });
+
+//handle user button html here for use of code editing
+const UserButton = () => {
+    const currentUser = getCurrentUser();
+    return `<div class="navBtnCircle navUserBtn">
+                    <img class="navUserBtn navBtn navProfileImg" src="${currentUser.gifLink}" alt="AltText" />
+            </div>
+            <h6 class="navBtn navUserBtn">${currentUser.firstName} ${currentUser.lastName}</h6>`
+}
+
+//to update the profile picture if necessary
+mainContainer.addEventListener("profilePicChanged", event => {
+    document.querySelector(".navUserBtn").innerHTML = UserButton();
+})

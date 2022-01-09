@@ -38,6 +38,10 @@
     cursor: pointer;
 }
 
+.navProfileImg {
+    border-radius: 50%;
+}
+
 .navbarCollapse {
     display: flex;
     flex-flow: column nowrap;

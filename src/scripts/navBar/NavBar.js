@@ -84,7 +84,7 @@ export const Navbar = () => {
                     </select>
                     <div class="favFilterInline">
                         <input type="checkbox"  id="favFilter" name="favFilter" value-"favFilter"/>
-                        <label for"favFilter">Filter by Favorites</label>
+                        <label for="favFilter">Filter by Favorites</label>
                     </div>
                 </div>
             </div>

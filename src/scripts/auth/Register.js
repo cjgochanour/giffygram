@@ -16,6 +16,10 @@ export const Register = () => {
                     <input type="text" name="email" placeholder="Email address" />
                     <label for="password">Password:</label>
                     <input type="password" name="password" placeholder="Password" />
+                    <label for="gifLink">Profile Gif</label>
+                    <input type="text" name="gifLink" placeholder="Link the Gif that represents You" />
+                    <label for="bio">Short Bio (not required)</label>
+                    <textarea name="bio" id="bioRegister" placeholder="Tell us about yourself (max 250 characters)" rows="4"></textarea>
           <div class="registerFormButtons">
             <button id="returnToLoginButton">Return to Login</button>
             <button id="registerButton">Register</button>
@@ -29,25 +33,32 @@ mainContainer.addEventListener("click", (clickEvent) => {
     const users = getUsers();
     const newFirstName = document.querySelector("input[name='firstName']").value;
     const newLastName = document.querySelector("input[name='lastName']").value;
-    const newEmail = document.querySelector("input[name='email']").value;
+    const newEmail = document.querySelector("input[name='email']").value.toLowerCase();
     const newPassword = document.querySelector("input[name='password']").value;
+    const newGifLink = document.querySelector("input[name='gifLink']").value;
+    const newBio = document.querySelector("#bioRegister").value;
 
     const dataToSendToAPI = {
       firstName: newFirstName,
       lastName: newLastName,
       email: newEmail,
       password: newPassword,
+      gifLink: newGifLink,
+      bio: newBio
     };
 
     if (users.find((user) => user.email === newEmail)) {
       window.alert("This email is already in use");
-    } else if (!newFirstName || !newLastName || !newEmail || !newPassword) {
+    } else if (!newFirstName || !newLastName || !newEmail || !newPassword || !newGifLink) {
       window.alert("Please fill out all required fields")
     } else {
       setAuthStateLogin()
-      sendUser(dataToSendToAPI).then(() =>
+      sendUser(dataToSendToAPI)
+      .then(res => res.json())
+      .then((newUser) => {
+        localStorage.setItem("beta_user", newUser.id)
         mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
-      );
+      });
     }
   }
 });

@@ -45,6 +45,7 @@
 
 .msgNavbarItem:hover {
     background-color: rgb(2, 69, 151);
+    cursor: pointer;
 }
 
 .msgNavbarBtn:hover {

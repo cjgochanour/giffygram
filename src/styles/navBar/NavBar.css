@@ -6,9 +6,10 @@
 .navcolItem {
     display: flex;
     flex-flow: row nowrap;
+    border-radius: 30px;
 }
 
-.navcolItem:hover .navBtnCircle {
+.navcolItem:hover {
     background-color: rgb(2, 69, 151);
 }
 
@@ -30,12 +31,12 @@
     height: 50px;
 }
 
-.navBtnCircle:hover {
-    background-color: rgb(2, 69, 151);
-}
-
 .navBtn:hover {
     cursor: pointer;
+}
+
+.navProfileImg {
+    border-radius: 50%;
 }
 
 .navbarCollapse {
@@ -122,6 +123,6 @@
     background-color: whitesmoke;
 }
 
-.favFilterInline:hover {
+.favFilterInline:hover, .favFilterInline label, .favFilterInline input {
     cursor: pointer;
 }

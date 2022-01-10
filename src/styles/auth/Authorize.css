@@ -58,7 +58,7 @@
     position: fixed;
     top: 50vh;
     left: 50vw;
-    min-height: 350px;
+    min-height: 450px;
     min-width: 500px;
     height: 36vh;
     width: 30vw;
@@ -76,6 +76,12 @@
     width: 90%;
     align-self: center;
     height: 2rem;
+    text-align: left;
+}
+
+.registerForm textarea {
+    width: 90%;
+    align-self: center;
     text-align: left;
 }
 
@@ -107,6 +113,7 @@
     top: 5vh;
     left: 50vw;
     width: 30vw;
+    min-width: 500px;
     margin-left: -15vw;
     border-radius: 5vh;
 }

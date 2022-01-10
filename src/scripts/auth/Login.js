@@ -18,6 +18,8 @@ document.addEventListener("click", (clickEvent) => {
         if (foundUser !== null) {
             localStorage.setItem("beta_user", foundUser.id);
             document.querySelector(".beta").dispatchEvent(new CustomEvent("stateChanged"));
+        } else {
+            window.alert("Email or Password was incorrect. Please try again.")
         }
     }
 });

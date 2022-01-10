@@ -1,3 +1,56 @@
 .post {
-    border: solid red 2px;
+    align-items: center;
+    margin: 25px auto;
+    padding: 0 10vw;
+    background-color: whitesmoke;
+    border-radius: 5vw;
+}
+
+.postSubject {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.postImage {
+    width: 30vw;
+}
+
+.postStory {
+    margin: 10px 0;
+    font-size: 1.5rem;
+}
+
+.postAuthor {
+    display: inline;
+    margin: 10px 0;
+    margin-left: -10px;
+    padding: 10px 10px;
+    width: 100;
+    border-radius: 10px;
+}
+
+.postAuthor:hover {
+    cursor: pointer;
+    background-color: rgba(0, 103, 229, 0.685);
+}
+
+.postBottomBar {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: 5px 0;
+    margin-bottom: 10px;
+}
+
+.postDate {
+    font-weight: bold;
+    margin: auto 0;
+}
+
+.postImgBtn {
+    width: 50px;
+}
+
+.postBottomBar .postImgBtn:hover {
+    cursor: pointer;
 }

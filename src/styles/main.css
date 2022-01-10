@@ -2,14 +2,19 @@
 @import "./messages/MessageSideBar.css";
 @import "./footer/Footer.css";
 @import "./postsFeed/PostList.css";
+@import "./postsFeed/Profile.css";
 @import "./postsFeed/PostCreate.css";
+@import "./auth/Authorize.css";
 @import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
-*/
+
 /*Typography
 --------------------------------------------------------------*/
+* {
+    margin: 0;
+}
 
 body, button, input, select, textarea {
-    color: #404040;
+    color: black;
     font-family: "Comfortaa", Arial, sans-serif;
     font-size: 1rem;
     line-height: 1.5;
@@ -32,14 +37,14 @@ ul {
     list-style: none;
 }
 
-.loginForm {
-    margin: 0 25%;
-}
-
 #logo {
     cursor: pointer;
 }
 
 .mainPage {
     display: flex;
+}
+
+.beta {
+    background-color: #192428;
 }

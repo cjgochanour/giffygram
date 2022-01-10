@@ -1,0 +1,75 @@
+.profileInfo {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 25px auto;
+    padding: 0 10vw;
+    background-color: whitesmoke;
+    border-radius: 5vw;    
+}
+
+/* profile specific css */
+.profile {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 50px;
+}
+
+.profileMsgList {
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100vh;
+}
+
+.profileMsgList .msg {
+    position: relative;
+    margin: 25px auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5vw;
+}
+
+.profileMsgList .recievedMsg {
+    align-items: flex-start;
+    right: 10vw;
+    padding-right: 5vw;
+    padding-left: 1rem;
+    text-align: left;
+    min-width: 200px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.profileMsgList .sentMsg {
+    align-items: flex-end;
+    text-align: right;
+    background-color: rgb(154, 194, 243);
+    left: 10vw;
+    padding-left: 5vw;
+    padding-right: 1rem;
+    min-width: 200px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* userProfile specific css */
+.userProfile {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 50px;
+}
+
+.userPostsList {
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 50px;
+}

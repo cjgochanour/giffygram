@@ -4,8 +4,12 @@ import { getDisplayMessageCreate, setDisplayMessageCreateTrue, setDisplayMessage
 
 export const MessageNavbar = () => {
     return `
-        <img id="composeMsgSidebar" class="msgNavbarItem" src="./images/betaLogo.png" alt="Compose New Message" width="30px" />
-        <img id="closeMsgSidebar" class="msgNavbarItem" src="./images/closeX.png" alt="Close Messages" width="30px" />`
+        <div class="msgNavbarItem msgNavBtn">
+        <img id="composeMsgSidebar" class="msgNavBtn" src="./images/Icons/write-message.png" alt="Compose New Message" />
+        </div>
+        <div class="msgNavbarItem msgNavBtn">
+        <img id="closeMsgSidebar" class="msgNavBtn" src="./images/closeX.png" alt="Close Messages" />
+        </div>`
 }
 
 const mainContainer = document.querySelector(".beta");

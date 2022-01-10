@@ -1,5 +1,4 @@
 import {
-    fetchPosts,
     getChosenUser,
     getCurrentUser,
     getDisplayFavorites,
@@ -40,7 +39,7 @@ export const PostList = () => {
         posts = posts.filter((post) => new Date(post.timestamp).getFullYear() === chosenYear);
     }
 
-    return `<ul class="postList"><li><button id="postBtn" class="postListItem postBtn">Create Post</button></li>${posts
+    return `<ul class="postList"><li class="postListItem postBtn"><button id="postBtn">Create Post</button></li>${posts
         .map((post) => Post(post))
         .join("")}</ul>`;
 };

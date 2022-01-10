@@ -36,16 +36,16 @@ export const Profile = () => {
 	allMsgs.sort((a, b) => b.timestamp - a.timestamp);
 
 	return `
-  <section class="profileInfo">
-    <img id="profileCloseBtn" class="closeBtn" src="images/closeX.png" alt="close profile" width="30px" />
-      <h2 class= "profileName">${chosenUser.firstName} ${chosenUser.lastName}</h2>
-      <div class="profilePostCount">Post count: ${userPosts.length}</div>
-  </section>
-  <section class="profileMsgList">
-      <ul class="sortedMsgList profileMsgList">
-        ${allMsgs.map((msg) => Message(msg)).join("")}
-      </ul>
-  </section>
+	<section class="profile">
+		<div class="profileInfo">
+			<img id="profileCloseBtn" class="profileCloseBtn" src="images/closeX.png" alt="close profile" width="30px" />
+			<h2 class= "profileName">${chosenUser.firstName} ${chosenUser.lastName}</h2>
+			<div class="profilePostCount">Post count: ${userPosts.length}</div>
+		</div>
+		<ul class="sortedMsgList profileMsgList">
+				${allMsgs.map((msg) => Message(msg)).join("")}
+		</ul>
+	</section>
 `;
 };
 

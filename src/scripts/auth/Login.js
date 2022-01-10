@@ -24,7 +24,7 @@ document.addEventListener("click", (clickEvent) => {
 
 //When register button is clicked, change authState to register and send out stateChanged event so main will rerender the whole app with register being returned for Auth()
 document.addEventListener("click", (clickEvent) => {
-    if (clickEvent.target.id === "registerButton") {
+    if (clickEvent.target.id === "goToRegisterButton") {
         setAuthStateReg();
         document.querySelector(".beta").dispatchEvent(new CustomEvent("stateChanged"));
     }
@@ -32,19 +32,18 @@ document.addEventListener("click", (clickEvent) => {
 
 export const LoginForm = () => {
     return `
+    <section class="loginPage">
+        <img class="betaLogo" src="images/betaLogo.png" />
         <div class="loginForm">
-            <form>
-                <fieldset>
-                    <label for="email">Email:</label>
+                    <label for="email">Email</label>
                     <input type="text" name="email" autofocus placeholder="Email address" />
-                </fieldset>
-                <fieldset>
-                    <label for="password">Password:</label>
+                    <label for="password">Password</label>
                     <input type="password" name="password" placeholder="Password" />
-                </fieldset>
-            </form>
-            <button id="loginButton">Login</button>
-            <button id="registerButton">Register</button>
+            <div class="loginFormButtons">
+                <button id="loginButton">Login</button>
+                <button id="goToRegisterButton">Register</button>
+            </div>
         </div>
+    </section>
     `;
 };

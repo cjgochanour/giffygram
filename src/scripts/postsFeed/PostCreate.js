@@ -3,7 +3,7 @@ import { fetchPosts, getCurrentUser, sendPost, setDisplayPostCreateFalse } from 
 const mainContainer = document.querySelector(".beta");
 
 mainContainer.addEventListener("click", (event) => {
-    if (event.target.className === "closeBtn") {
+    if (event.target.className === "postCreateCloseBtn") {
         document.querySelector(".postCreate").style.visibility = "hidden";
         setDisplayPostCreateFalse();
     }
@@ -38,12 +38,14 @@ mainContainer.addEventListener("click", (event) => {
 
 export const PostCreate = () => {
     return `
-            <img id="closeBtn" class="closeBtn" src="images/closeX.png" alt="close post creation" width="30px">
-            <form>
+        <div class="postCreateBox">
+            <img id="postCreateCloseBtn" class="postCreateCloseBtn" src="images/closeX.png" alt="close post creation" />
+            <div class="postCreateFlex">
                 <input type="text" name="gifURL" id="postUrlInput" placeholder="URL:" />
-                <input type="text" name="postTitle" id="postTitle" placeholder="Title:" />
+                <input type="text" name="postTitle" id="postTitle" placeholder="Title:">
                 <textarea name="postComment" id="postComment" placeholder="Comment:"></textarea>
-            </form>
-            <button id="sendPost">Submit Post</button>
+                <button id="sendPost">Submit Post</button>
+            </div>
+        </div>
 `;
 };

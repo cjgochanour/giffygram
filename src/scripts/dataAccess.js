@@ -13,7 +13,7 @@ const applicationState = {
         chosenYear: null,
         displayFavorites: false,
         displayMessages: false,
-        displayNavBar: true,
+        displayNavBar: false,
         displayMessageCreate: false,
         displayPostCreate: false,
         postsFeedState: "postList",
